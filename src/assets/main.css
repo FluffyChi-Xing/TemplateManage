@@ -1,0 +1,41 @@
+@import './base.css';
+
+#app {
+  max-width: 1280px;
+  font-weight: normal;
+  --main-theme0color: #A0CFFF;
+  --main-theme0color-dark: #79BBFF;
+  --main-theme0color-light: #C6E2FF;
+  --success-theme-color: #B3E19D;
+  --success-theme-color-light: #D1EDC4;
+  --success-theme-color-dark: #8FCB7E;
+  --warning-theme-color: #F3D19E;
+  --warning-theme-color-light: #F8E3C5;
+  --warning-theme-color-dark: #EEBE77;
+  --danger-theme-color: #FAB6B6;
+  --danger-theme-color-light: #FCD3D3;
+  --danger-theme-color-dark: #F89898;
+}
+.scroll-bar-init {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d4 #f0f0f0;
+}
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
