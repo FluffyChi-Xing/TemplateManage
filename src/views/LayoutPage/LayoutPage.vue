@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 import { $enums } from '../../composabels/enums'
 import { useRoute } from "vue-router";
 import { onMounted, watch } from "vue";
+import TopFuncNav from "./_components/TopFuncNav.vue";
 
 //router
 const router = useRouter()
@@ -28,6 +29,10 @@ function changeRouter(e: string) {
       router.push('/notice')
         defaultActive.value = '2'
           break;
+    case '3-1':
+      router.push('/allCom')
+        defaultActive.value = '3-1'
+          break;
     case '3-2':
       router.push('/table')
         defaultActive.value = '3-2'
@@ -41,6 +46,9 @@ function persistenceRoute(e: string) {
         break;
     case '/notice':
       defaultActive.value = '2'
+        break;
+    case '/allCom':
+      defaultActive.value = '3-1'
         break;
     case '/table':
       defaultActive.value = '3-2'
@@ -73,8 +81,8 @@ watch(() => route.fullPath, () => {
             </span>
           </div>
           <!-- function banner -->
-          <div class="w-[150px] h-full relative flex ml-auto bg-red-950">
-
+          <div class="w-auto h-full relative flex ml-auto">
+            <TopFuncNav />
           </div>
         </div>
       </el-header>

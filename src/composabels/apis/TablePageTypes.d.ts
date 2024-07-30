@@ -22,4 +22,9 @@ declare namespace TablePageTypes {
         type: 'primary' | 'danger' | 'text' | 'info' | 'success' | 'warning';
         option: (e: number) => void;
     }
+    interface Tree {
+        id: string
+        label: string
+        children?: Tree[]
+    }
 }

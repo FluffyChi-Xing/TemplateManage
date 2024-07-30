@@ -4,8 +4,9 @@ import DashBoard from "@/views/DashBoard/DashBoard.vue";
 import LayoutPage from "@/views/LayoutPage/LayoutPage.vue";
 import LayoutComponent from "@/views/LayoutPage/_components/LayoutComponent.vue";
 import DisplayPage from "@/views/DisplayPage/DisplayPage.vue";
-import NoticeCenter from "@/views/NoticeCenter/NoticeCenter.vue";
-import TableBoard from "@/views/DataBoard/TableBoard.vue";
+import NoticeCenter from "@/views/LayoutPage/_components/NoticeCenter.vue";
+import TableBoard from "@/views/LayoutPage/_components/TableBoard.vue";
+import AllComponents from "@/views/LayoutPage/_components/AllComponents.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -28,6 +29,14 @@ const router = createRouter({
           component: NoticeCenter,
           meta: {
             title: '公告中心'
+          }
+        },
+        {
+          path: '/allCom',
+          name: 'allCom',
+          component: AllComponents,
+          meta: {
+            title: '展示中心 | 全部组件'
           }
         },
         {

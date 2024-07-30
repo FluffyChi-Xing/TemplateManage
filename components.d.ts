@@ -24,6 +24,7 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    ElTree: typeof import('element-plus/es')['ElTree']
     ExampelShowCase: typeof import('./src/components/ExampelShowCase.vue')['default']
     LayoutComponent: typeof import('./src/views/LayoutPage/_components/LayoutComponent.vue')['default']
     NoData: typeof import('./src/components/NoData.vue')['default']

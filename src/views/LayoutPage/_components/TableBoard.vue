@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import TipComponent from "../../components/TipComponent.vue";
+import TipComponent from "../../../components/TipComponent.vue";
 import { ref } from "vue";
-import ExampelShowCase from "../../components/ExampelShowCase.vue";
-import TableTemplate from "../../components/TableTemplate.vue";
-import {$doc} from "../../composabels/doc";
-import DescriptionBlock from "../../components/DescriptionBlock.vue";
+import ExampelShowCase from "../../../components/ExampelShowCase.vue";
+import TableTemplate from "../../../components/TableTemplate.vue";
+import {$doc} from "../../../composabels/doc";
+import DescriptionBlock from "../../../components/DescriptionBlock.vue";
+import NoData from "../../../components/NoData.vue";
 
 /* ========================= 表格数据--start ========================= */
 const tipsInfo_1 = ref<TablePageTypes.CustomTipType>({
@@ -248,17 +249,121 @@ const table4Data = [
     zip: 'CA 90036',
   }
 ]
-/* ========================= 表格数据--start ========================= */
+/* ========================= 表格数据--end ========================= */
+
+/* ========================= 树形组件--start ========================= */
+const handleNodeClick = (data: TablePageTypes.Tree) => {
+  const container = document.querySelector('#container') as HTMLElement
+  // 根据id跳转到对应的锚点
+  switch (data.id) {
+    case '#base-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#stripe-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#border-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#overflow-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#fluid-height-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#multi-level-header-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#fixed-header-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+    case '#fixed-column-table':
+      container.scrollTo({
+        top: getOffset(data.id),
+        behavior: 'smooth'
+      })
+      break;
+  }
+}
+// 获取锚点到顶部的offset
+function getOffset(id: string) {
+  const el = document.querySelector(id) as HTMLElement
+  return el.offsetTop
+}
+
+const data: TablePageTypes.Tree[] = [
+  {
+    id: '#base-table',
+    label: '基础表格',
+  },
+  {
+    id: '#stripe-table',
+    label: '带斑马纹的表格',
+  },
+  {
+    id: '#border-table',
+    label: '带边框的表格',
+  },
+  {
+    id: '#overflow-table',
+    label: '显示溢出工具提示的表格'
+  },
+  {
+    id: '#fluid-height-table',
+    label: '流体高度的表格',
+  },
+  {
+    id: '#multi-level-header-table',
+    label: '多级表头的表格',
+  },
+  {
+    id: '#fixed-header-table',
+    label: '带单选的表格',
+  },
+  {
+    id: '#fixed-column-table',
+    label: '带多选的表格',
+  }
+]
+
+const defaultProps = {
+  id: 'id',
+  children: 'children',
+  label: 'label',
+}
+/* ========================= 树形组件--end ========================= */
 </script>
 
 <template>
   <div class="w-full h-full flex p-4 scroll-bar-init">
-    <div class="w-2/3 h-full block px-4 overflow-y-auto">
+    <div id="container" class="w-2/3 h-full block px-4 smooth-scroll overflow-y-auto">
       <DescriptionBlock
           :title="$doc.TableDoc.des_1[0]"
           :content="$doc.TableDoc.des_1[1]"
       />
       <DescriptionBlock
+          id="base-table"
           :title="$doc.TableDoc.des_2[0]"
           :content="$doc.TableDoc.des_2[1]"
       />
@@ -279,6 +384,7 @@ const table4Data = [
         />
       </ExampelShowCase>
       <DescriptionBlock
+          id="stripe-table"
           :title="$doc.TableDoc.des_3[0]"
           :content="$doc.TableDoc.des_3[1]"
       />
@@ -300,6 +406,7 @@ const table4Data = [
         />
       </ExampelShowCase>
      <DescriptionBlock
+         id="border-table"
          :title="$doc.TableDoc.des_4[0]"
          :content="$doc.TableDoc.des_4[1]"
      />
@@ -316,6 +423,7 @@ const table4Data = [
         />
       </ExampelShowCase>
       <DescriptionBlock
+          id="overflow-table"
           :title="$doc.TableDoc.des_5[0]"
           :content="$doc.TableDoc.des_5[1]"
       />
@@ -332,6 +440,7 @@ const table4Data = [
         />
       </ExampelShowCase>
       <DescriptionBlock
+          id="fluid-height-table"
           :title="$doc.TableDoc.des_6[0]"
           :content="$doc.TableDoc.des_6[1]"
       />
@@ -357,6 +466,7 @@ const table4Data = [
         </el-button>
       </ExampelShowCase>
       <DescriptionBlock
+          id="multi-level-header-table"
           :title="$doc.TableDoc.des_7[0]"
           :content="$doc.TableDoc.des_7[1]"
       />
@@ -373,6 +483,7 @@ const table4Data = [
         />
       </ExampelShowCase>
       <DescriptionBlock
+          id="fixed-header-table"
           :title="$doc.TableDoc.des_8[0]"
           :content="$doc.TableDoc.des_8[1]"
       />
@@ -390,6 +501,7 @@ const table4Data = [
         />
       </ExampelShowCase>
       <DescriptionBlock
+          id="fixed-column-table"
           :title="$doc.TableDoc.des_9[0]"
           :content="$doc.TableDoc.des_9[1]"
       />
@@ -407,13 +519,33 @@ const table4Data = [
         />
       </ExampelShowCase>
     </div>
-    <!-- Anchor -->
-    <div class="w-1/3 h-full flex flex-col">
-
+    <!-- Tree -->
+    <div class="w-1/3 h-full flex flex-col p-4 bg-white justify-start">
+      <el-tree
+          class="mx-auto"
+          v-if="data.length"
+          style="max-width: 400px"
+          :data="data"
+          :props="defaultProps"
+          @node-click="handleNodeClick"
+      />
+      <NoData
+          v-else
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
-
+.smooth-scroll {
+  transition: all 0.3s ease-in-out;
+  scroll-behavior: smooth;
+}
+:deep(.el-tree-node) {
+  cursor: pointer;
+  border: 1px solid transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: var(--main-theme0color);
+}
 </style>
