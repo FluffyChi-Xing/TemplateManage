@@ -1,3 +1,5 @@
+import {ref} from "vue";
+
 export const code_1 = '<TableTemplate\n' +
     '   :lab-prop="tableLabel"\n' +
     '   :data="tableData"\n' +
@@ -256,3 +258,13 @@ export const des_9 = [
     '多选',
     '你也可以选择多行。'
 ]
+export const tipsInfo_1 = ref<TablePageTypes.CustomTipType>({
+    title: 'TIP',
+    subTitle: '基础表格模块',
+    tipsType: true,
+})
+export const tipsInfo_2 = ref<TablePageTypes.CustomTipType>({
+    title: 'TIP',
+    subTitle: '带斑马纹的表格',
+    tipsType: true,
+})

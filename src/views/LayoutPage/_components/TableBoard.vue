@@ -8,16 +8,6 @@ import DescriptionBlock from "../../../components/DescriptionBlock.vue";
 import NoData from "../../../components/NoData.vue";
 
 /* ========================= 表格数据--start ========================= */
-const tipsInfo_1 = ref<TablePageTypes.CustomTipType>({
-  title: 'TIP',
-  subTitle: '基础表格模块',
-  tipsType: true,
-})
-const tipsInfo_2 = ref<TablePageTypes.CustomTipType>({
-  title: 'TIP',
-  subTitle: '带斑马纹的表格',
-  tipsType: true,
-})
 const tableLabel = ref<TablePageTypes.TableTemplate[]>([
   {
     label: '日期',
@@ -368,9 +358,9 @@ const defaultProps = {
           :content="$doc.TableDoc.des_2[1]"
       />
       <TipComponent
-          :title="tipsInfo_1.title"
-          :sub-title="tipsInfo_1.subTitle"
-          :default-tip="tipsInfo_1.tipsType"
+          :title="$doc.TableDoc.tipsInfo_1.value.title"
+          :sub-title="$doc.TableDoc.tipsInfo_1.value.subTitle"
+          :default-tip="$doc.TableDoc.tipsInfo_1.value.tipsType"
           class="mb-4"
       />
       <!-- example #1 -->
@@ -389,9 +379,9 @@ const defaultProps = {
           :content="$doc.TableDoc.des_3[1]"
       />
       <TipComponent
-          :title="tipsInfo_2.title"
-          :sub-title="tipsInfo_2.subTitle"
-          :default-tip="tipsInfo_2.tipsType"
+          :title="$doc.TableDoc.tipsInfo_2.value.title"
+          :sub-title="$doc.TableDoc.tipsInfo_2.value.subTitle"
+          :default-tip="$doc.TableDoc.tipsInfo_2.value.tipsType"
           class="my-4"
       />
       <!-- example #2 -->
@@ -537,10 +527,6 @@ const defaultProps = {
 </template>
 
 <style scoped>
-.smooth-scroll {
-  transition: all 0.3s ease-in-out;
-  scroll-behavior: smooth;
-}
 :deep(.el-tree-node) {
   cursor: pointer;
   border: 1px solid transparent;

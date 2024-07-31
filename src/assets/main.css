@@ -28,6 +28,11 @@ a,
   padding: 3px;
 }
 
+.smooth-scroll {
+  transition: all 0.3s ease-in-out;
+  scroll-behavior: smooth;
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;
