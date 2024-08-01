@@ -1,10 +1,11 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from "vue-router";
 import { $enums } from '../../composabels/enums'
 import { useRoute } from "vue-router";
 import { onMounted, watch } from "vue";
 import TopFuncNav from "./_components/TopFuncNav.vue";
+import { useCounterStore } from '../../stores/counter'
 
 //router
 const router = useRouter()
@@ -12,11 +13,12 @@ const router = useRouter()
 const title = ref<string>('中台管理系统')
 //route
 const route = useRoute()
+const page = useCounterStore()
+
+/* ========================= 菜单持久化--start ========================= */
 function goHome() {
   router.push('/')
 }
-
-
 //change page
 const defaultActive = ref<string>('1')
 function changeRouter(e: string) {
@@ -55,6 +57,7 @@ function persistenceRoute(e: string) {
         break;
   }
 }
+/* ========================= 菜单持久化--end ========================= */
 onMounted(() => {
   persistenceRoute(route.fullPath)
 })
@@ -129,6 +132,15 @@ watch(() => route.fullPath, () => {
           <div class="w-full h-full relative block">
             <router-view />
           </div>
+          <!-- edit drawer -->
+          <el-drawer
+              size="350"
+              title="设置中心"
+              style="border-radius: 10px 0 0 10px"
+              v-model="page.editDrawer"
+          >
+
+          </el-drawer>
         </el-main>
       </el-container>
     </el-container>

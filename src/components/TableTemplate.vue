@@ -36,7 +36,7 @@ withDefaults(defineProps<{
 <template>
   <div class="w-full h-auto bg-white p-4">
     <el-table
-        style="width: 100%"
+        style="width: 100%; height: 100%;"
         :data="data"
         :stripe="stripe"
         :max-height="maxHeight ? maxHeight : 'auto'"
