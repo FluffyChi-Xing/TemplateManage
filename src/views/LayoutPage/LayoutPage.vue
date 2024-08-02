@@ -207,4 +207,10 @@ watch(() => route.matched, () => {
 :deep(.el-header) {
   background-color: #fff;
 }
+:deep(.el-drawer.rtl) {
+  backdrop-filter: blur(8px) saturate(200%);
+  -webkit-backdrop-filter: blur(8px) saturate(200%);
+  background-color: rgba(255, 255, 255, 0.47);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
 </style>

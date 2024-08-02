@@ -22,7 +22,7 @@ const noticeList = ref<HomePageTypes.Notice[]>([])
         </div>
         <div class="w-full h-8 relative flex justify-end mt-5 mb-5">
           <el-button
-              style="background-color: var(--success-theme-color);color: var(--success-theme-color-dark)"
+              style="background-color: var(--success-theme-color);color: #fff"
               icon="Select"
           >
             进入工作台

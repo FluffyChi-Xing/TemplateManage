@@ -57,6 +57,7 @@ function removeTag(item: HomePageTypes.tagsComponent) {
         class="mx-3 cursor-pointer"
         @click="jumpsRoute(tag.value)"
         @close="removeTag(tag)"
+        style="color: #fff"
     >
       {{ tag.text }}
     </el-tag>
@@ -71,12 +72,9 @@ function removeTag(item: HomePageTypes.tagsComponent) {
         :hit="hit"
         :round="round"
         class="mx-3 cursor-pointer"
+        style="color: #fff"
     >
       首页
     </el-tag>
   </div>
 </template>
-
-<style scoped>
-
-</style>
