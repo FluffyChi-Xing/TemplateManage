@@ -26,11 +26,15 @@ const router = useRouter()
 function jumpsRoute(item: string) {
   router.push(item)
 }
-function removeTag(index: HomePageTypes.tagsComponent) {
+function removeTag(item: HomePageTypes.tagsComponent) {
   if (props.tags.length === 1) {
     router.push('/')
   } else {
-    props.tags.splice(index, 1)
+    props.tags.forEach((tag, i) => {
+      if (tag.text === item.text) {
+        props.tags.splice(i, 1)
+      }
+    })
   }
 }
 /* ========================= tags跳转--start ========================= */

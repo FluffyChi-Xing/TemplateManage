@@ -64,15 +64,35 @@ function persistenceRoute(e: string) {
 const tagsList = ref<HomePageTypes.tagsComponent[]>([])
 const tagsListMax = 10
 function getRouteList() {
+  if (localStorage.getItem('viewHistory')) {
+    tagsList.value = JSON.parse(localStorage.getItem('viewHistory') as string)
+  }
+  if (tagsList.value.length === 0) {
+    tagsList.value.push({
+      text: '首页',
+      value: '/'
+    })
+  }
   if (tagsList.value.length >= tagsListMax) {
     // 如果tagsList的长度大于等于tagsListMax，删除第一个元素
     tagsList.value = tagsList.value.slice(-1)
   }
   // 检查tagsList内是否有重复的元素
-  tagsList.value.push({
-    text: route.meta.title,
-    value: route.fullPath
+  let isExist = false;
+  tagsList.value.forEach((item: HomePageTypes.tagsComponent, index: number) => {
+    if (item.text === route.meta.title) {
+      isExist = true;
+      // tagsList.value.splice(index, 1)
+      return
+    }
   })
+  if (!isExist) {
+    tagsList.value.push({
+      text: route.meta.title,
+      value: route.fullPath
+    })
+    localStorage.setItem('viewHistory', JSON.stringify(tagsList.value))
+  }
 }
 /* ========================= 路由tags--end ========================= */
 onMounted(() => {
