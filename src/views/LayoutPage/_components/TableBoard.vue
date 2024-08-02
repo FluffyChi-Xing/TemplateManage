@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import TipComponent from "../../../components/TipComponent.vue";
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
 import ExampelShowCase from "../../../components/ExampelShowCase.vue";
 import TableTemplate from "../../../components/TableTemplate.vue";
 import {$doc} from "../../../composabels/doc";
 import DescriptionBlock from "../../../components/DescriptionBlock.vue";
 import NoData from "../../../components/NoData.vue";
+import hljs from "highlight.js";
 
 /* ========================= 表格数据--start ========================= */
 const tableLabel = ref<TablePageTypes.TableTemplate[]>([
@@ -343,6 +344,9 @@ const defaultProps = {
   label: 'label',
 }
 /* ========================= 树形组件--end ========================= */
+onMounted(() => {
+  hljs.highlightAll()
+})
 </script>
 
 <template>

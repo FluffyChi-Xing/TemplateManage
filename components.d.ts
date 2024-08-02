@@ -25,6 +25,7 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     ExampelShowCase: typeof import('./src/components/ExampelShowCase.vue')['default']
@@ -33,6 +34,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableTemplate: typeof import('./src/components/TableTemplate.vue')['default']
+    TagsComponents: typeof import('./src/components/TagsComponents.vue')['default']
     TipComponent: typeof import('./src/components/TipComponent.vue')['default']
   }
 }

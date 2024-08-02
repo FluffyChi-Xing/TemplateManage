@@ -8,14 +8,6 @@ const noticeList = ref<HomePageTypes.Notice[]>([])
 
 <template>
   <div class="w-full h-full relative block">
-    <!-- top banner -->
-    <div class="w-full h-[70px] relative block">
-      <el-card
-          style="height: 100%;"
-      >
-
-      </el-card>
-    </div>
     <!-- main description -->
     <div style="height: calc(100% - 70px)" class="w-full relative flex justify-between pt-5">
       <!-- #1 -->

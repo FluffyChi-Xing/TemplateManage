@@ -10,4 +10,8 @@ declare namespace HomePageTypes {
         type: string;
         option: () => void;
     }
+    interface tagsComponent {
+        text: string;
+        value: string;
+    }
 }

@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import hljs from 'highlight.js';
-import { onMounted } from "vue";
 import 'highlight.js/styles/atom-one-dark.css'
 
 const show = ref<boolean>(false)
@@ -9,9 +7,6 @@ withDefaults(defineProps<{
   code: string,
 }>(), {
   code: ''
-})
-onMounted(() => {
-  hljs.highlightAll()
 })
 </script>
 

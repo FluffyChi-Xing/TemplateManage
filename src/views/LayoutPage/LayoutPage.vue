@@ -6,6 +6,7 @@ import { useRoute } from "vue-router";
 import { onMounted, watch } from "vue";
 import TopFuncNav from "./_components/TopFuncNav.vue";
 import { useCounterStore } from '../../stores/counter'
+import TagsComponents from "../../components/TagsComponents.vue";
 
 //router
 const router = useRouter()
@@ -58,11 +59,31 @@ function persistenceRoute(e: string) {
   }
 }
 /* ========================= 菜单持久化--end ========================= */
+
+/* ========================= 路由tags--start ========================= */
+const tagsList = ref<HomePageTypes.tagsComponent[]>([])
+const tagsListMax = 10
+function getRouteList() {
+  if (tagsList.value.length >= tagsListMax) {
+    // 如果tagsList的长度大于等于tagsListMax，删除第一个元素
+    tagsList.value = tagsList.value.slice(-1)
+  }
+  // 检查tagsList内是否有重复的元素
+  tagsList.value.push({
+    text: route.meta.title,
+    value: route.fullPath
+  })
+}
+/* ========================= 路由tags--end ========================= */
 onMounted(() => {
   persistenceRoute(route.fullPath)
+  getRouteList()
 })
 watch(() => route.fullPath, () => {
   persistenceRoute(route.fullPath)
+})
+watch(() => route.matched, () => {
+  getRouteList()
 })
 </script>
 
@@ -130,6 +151,15 @@ watch(() => route.fullPath, () => {
         <el-main>
           <!-- page container -->
           <div class="w-full h-full relative block">
+            <!-- tags banner -->
+            <div class="w-full h-12 pb-4 flex gap-3 overflow-hidden">
+              <TagsComponents
+                  :tags="tagsList"
+                  tags=""
+                  :type="'primary'"
+                  :closable="true"
+              />
+            </div>
             <router-view />
           </div>
           <!-- edit drawer -->

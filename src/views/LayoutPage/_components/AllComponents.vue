@@ -2,10 +2,11 @@
 import DescriptionBlock from "../../../components/DescriptionBlock.vue";
 import {$doc} from "../../../composabels/doc";
 import ExampelShowCase from "../../../components/ExampelShowCase.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import TableTemplate from "../../../components/TableTemplate.vue";
 import TipComponent from "../../../components/TipComponent.vue";
 import NoData from "../../../components/NoData.vue";
+import hljs from "highlight.js";
 /* ========================= 展示数据--start ========================= */
 const tableLabel = ref<TablePageTypes.TableTemplate[]>([
   {
@@ -86,6 +87,9 @@ function getOffset(id: string): number | undefined {
   return el?.offsetTop
 }
 /* ========================= 树形组件--end ========================= */
+onMounted(() => {
+  hljs.highlightAll()
+})
 </script>
 
 <template>

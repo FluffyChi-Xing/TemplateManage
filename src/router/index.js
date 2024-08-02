@@ -14,6 +14,9 @@ const router = createRouter({
       path: '/',
       name: 'LayoutPage',
       component: LayoutPage,
+      meta: {
+        title: '中台模板系统'
+      },
       children: [
         {
           path: '',
