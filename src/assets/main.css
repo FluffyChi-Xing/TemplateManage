@@ -19,6 +19,7 @@
   --danger-theme-color-light: #FCD3D3;
   --danger-theme-color-dark: #F89898;
   --layout-main-bg: #FAFAFA;
+  --vp-c-bg-soft: #f6f6f7;
 }
 .scroll-bar-init {
   scrollbar-width: thin;

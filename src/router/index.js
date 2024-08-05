@@ -1,12 +1,13 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import NProgress from 'nprogress'
-import DashBoard from "@/views/DashBoard/DashBoard.vue";
-import LayoutPage from "@/views/LayoutPage/LayoutPage.vue";
+import DashBoard from "@/views/DashBoard/index.vue";
+import LayoutPage from "@/views/LayoutPage/index.vue";
 import LayoutComponent from "@/views/LayoutPage/_components/LayoutComponent.vue";
-import DisplayPage from "@/views/DisplayPage/DisplayPage.vue";
+import DisplayPage from "@/views/DisplayPage/index.vue";
 import NoticeCenter from "@/views/LayoutPage/_components/NoticeCenter.vue";
 import TableBoard from "@/views/LayoutPage/_components/TableBoard.vue";
 import AllComponents from "@/views/LayoutPage/_components/AllComponents.vue";
+import Information from "@/views/DisplayPage/_components/information.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -66,7 +67,17 @@ const router = createRouter({
       component: DisplayPage,
       meta: {
         title: '一个 Vue 3 中台模板'
-      }
+      },
+      children: [
+        {
+          path: '/display/information',
+          name: 'information',
+          component: Information,
+          meta: {
+            title: '中台管理系统'
+          }
+        }
+      ]
     }
   ]
 })

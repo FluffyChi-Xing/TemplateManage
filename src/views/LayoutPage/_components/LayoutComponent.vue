@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import NoData from '../../../components/NoData.vue'
+import { useRouter } from "vue-router";
 
 // notice list
 const noticeList = ref<HomePageTypes.Notice[]>([])
+// router
+const router = useRouter()
+function toDisplay() {
+  router.push('/display/information')
+}
 </script>
 
 <template>
@@ -21,6 +27,13 @@ const noticeList = ref<HomePageTypes.Notice[]>([])
           </el-card>
         </div>
         <div class="w-full h-8 relative flex justify-end mt-5 mb-5">
+          <el-button
+              icon="Warning"
+              style="background-color: var(--warning-theme-color);color: #fff"
+              @click="toDisplay"
+          >
+            基本介绍
+          </el-button>
           <el-button
               style="background-color: var(--success-theme-color);color: #fff"
               icon="Select"

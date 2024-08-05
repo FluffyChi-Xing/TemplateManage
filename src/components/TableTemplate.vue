@@ -39,10 +39,10 @@ withDefaults(defineProps<{
       style="background-color: var(--el-bg-color)"
   >
     <el-table
-        style="width: 100%; height: 100%;"
+        style="width: 100%"
         :data="data"
         :stripe="stripe"
-        :max-height="maxHeight ? maxHeight : 'auto'"
+        :max-height="maxHeight ? maxHeight : 250"
         :fit="fit"
         :size="$enums.String2Table(size)"
         :border="border"

@@ -91,7 +91,7 @@ const toggleTheme = (event: { clientX: any; clientY: any; }) => {
         },
         {
           duration: 600,
-          easing: "ease",
+          easing: "ease-in",
           pseudoElement: isDark.value
               ? "::view-transition-new(root)"
               : "::view-transition-old(root)"
@@ -155,10 +155,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.toggle.animate {
-  animation: animate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 @keyframes animate {
   0% {
     transform: scale(1);
@@ -169,14 +165,6 @@ onMounted(() => {
   100% {
     transform: scale(1);
   }
-}
-
-.text {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /**

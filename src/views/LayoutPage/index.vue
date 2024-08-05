@@ -116,7 +116,7 @@ watch(() => route.matched, () => {
     <el-container>
       <el-header
           class="shadow-md"
-          style="background-color: var(--el-bg-color)"
+          style="background-color: var(--el-bg-color);border-bottom: 1px solid var(--el-border-color)"
       >
         <!-- header -->
         <div

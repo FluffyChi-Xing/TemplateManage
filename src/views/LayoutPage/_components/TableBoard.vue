@@ -139,6 +139,7 @@ const table3options = ref<TablePageTypes.TableOptions[]>([
   }
 ])
 function addItems() {
+  console.log('okk')
   table3Data.value.push({
     date: '2016-05-02',
     name: '王小虎',
@@ -448,7 +449,7 @@ onMounted(() => {
             :data="table3Data"
             :stripe="true"
             :border="true"
-            :max-height="250"
+            :max-height="350"
             :options="table3options"
         />
         <el-button
