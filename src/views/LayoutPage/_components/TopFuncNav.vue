@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
 import {useCounterStore} from "../../../stores/counter";
+import { useDark, useToggle } from '@vueuse/core'
 
 
 const page = useCounterStore()
@@ -54,7 +55,51 @@ function editPage() {
     page.editDrawer = true
   }
 }
+// 夜间模式
+const darkMode = ref<string>('light')
 /* ========================= 顶部组件栏数据--end ========================= */
+
+/* ========================= 夜间模式--start ========================= */
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+
+const toggleTheme = (event: { clientX: any; clientY: any; }) => {
+  const x = event.clientX;
+  const y = event.clientY;
+  const endRadius = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y)
+  );
+
+  // 兼容性处理
+  if (!document.startViewTransition) {
+    toggleDark();
+    return;
+  }
+  const transition = document.startViewTransition(async () => {
+    toggleDark();
+  });
+
+  transition.ready.then(() => {
+    const clipPath = [
+      `circle(0px at ${x}px ${y}px)`,
+      `circle(${endRadius}px at ${x}px ${y}px)`,
+    ];
+    document.documentElement.animate(
+        {
+          clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
+        },
+        {
+          duration: 600,
+          easing: "ease",
+          pseudoElement: isDark.value
+              ? "::view-transition-new(root)"
+              : "::view-transition-old(root)"
+        }
+    );
+  });
+};
+/* ========================= 夜间模式--start ========================= */
 
 onMounted(() => {
   buttons.value = defaultButtons
@@ -62,10 +107,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-auto h-auto grid grid-cols-3 gap-3 my-auto">
+  <div class="w-auto h-auto grid grid-cols-4 gap-3 my-auto">
     <!-- full-screen -->
     <!-- refresh-button -->
     <!-- setting -->
+    <!-- switch to dark -->
+    <div class="w-auto h-10 flex justify-center">
+      <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="夜间模式"
+          placement="bottom"
+      >
+        <el-switch
+            v-model="darkMode"
+            size="small"
+            active-value="light"
+            active-action-icon="Sunny"
+            active-color="#A0CFFF"
+            inactive-action-icon="Moon"
+            inactive-value="dark"
+            class="my-auto"
+            @click="toggleTheme"
+        />
+      </el-tooltip>
+    </div>
     <div
         v-for="item in buttons"
         :key="item.id"
@@ -89,5 +155,50 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.toggle.animate {
+  animation: animate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/**
+ Animated Theme Toggle
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 1;
+}
+.dark::view-transition-new(root) {
+  z-index: 999;
+}
+
+::view-transition-old(root) {
+  z-index: 999;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
 </style>

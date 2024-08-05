@@ -514,7 +514,7 @@ onMounted(() => {
       </ExampelShowCase>
     </div>
     <!-- Tree -->
-    <div class="w-1/3 h-full flex flex-col p-4 bg-white justify-start">
+    <div class="w-1/3 h-full flex flex-col p-4 justify-start">
       <el-tree
           class="mx-auto"
           v-if="data.length"

@@ -98,6 +98,7 @@ onMounted(() => {
       <DescriptionBlock
           :title="$doc.OverViewDoc.overview_1[0]"
           :content="$doc.OverViewDoc.overview_1[1]"
+          style="color: var(--el-text-color)"
       />
       <DescriptionBlock
           id="show-case"
@@ -177,7 +178,7 @@ onMounted(() => {
         />
       </ExampelShowCase>
     </div>
-    <div class="w-1/3 h-full flex flex-col p-4 bg-white justify-start">
+    <div class="w-1/3 h-full flex flex-col p-4 justify-start">
       <el-tree
           class="mx-auto"
           v-if="data.length"

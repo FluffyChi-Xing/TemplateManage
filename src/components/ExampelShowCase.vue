@@ -11,7 +11,10 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-auto flex flex-col example-show">
+  <div
+      class="w-full h-auto flex flex-col example-show"
+      style="background-color: var(--el-bg-color)"
+  >
     <slot />
     <!-- option button banner -->
     <div class="w-full h-16 p-4 flex justify-end example-option">
@@ -51,17 +54,5 @@ withDefaults(defineProps<{
 }
 .example-option {
   border-top: 1px solid var(--el-border-color);
-}
-.transition-box {
-  margin-bottom: 10px;
-  width: 200px;
-  height: 100px;
-  border-radius: 4px;
-  background-color: #409eff;
-  text-align: center;
-  color: #fff;
-  padding: 40px 20px;
-  box-sizing: border-box;
-  margin-right: 20px;
 }
 </style>

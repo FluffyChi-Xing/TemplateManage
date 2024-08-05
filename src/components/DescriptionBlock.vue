@@ -9,12 +9,24 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-auto my-4">
+  <div
+      class="w-full h-auto my-4"
+  >
     <div class="w-full h-12 flex flex-row">
-      <span class="text-[2.2rem] font-bold text-black">{{  title  }}</span>
+      <span
+          class="text-[2.2rem] font-bold"
+          style="color: var(--el-text-color-primary)"
+      >
+        {{  title  }}
+      </span>
     </div>
     <div class="w-full h-auto whitespace-pre-line text-ellipsis overflow-hidden mt-4">
-      <span class="text-[1rem]">{{content}}</span>
+      <span
+          class="text-[1rem]"
+          style="color: var(--el-text-color-primary)"
+      >
+        {{content}}
+      </span>
     </div>
   </div>
 </template>

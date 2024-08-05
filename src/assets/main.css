@@ -18,6 +18,7 @@
   --danger-theme-color: #FAB6B6;
   --danger-theme-color-light: #FCD3D3;
   --danger-theme-color-dark: #F89898;
+  --layout-main-bg: #FAFAFA;
 }
 .scroll-bar-init {
   scrollbar-width: thin;
@@ -30,10 +31,11 @@ a,
   transition: 0.4s;
   padding: 3px;
 }
-
 .smooth-scroll {
   transition: all 0.3s ease-in-out;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--el-scrollbar-bg-color) var(--el-fill-color-light);
 }
 
 @media (min-width: 1024px) {

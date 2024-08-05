@@ -108,19 +108,30 @@ watch(() => route.matched, () => {
 </script>
 
 <template>
-  <div class="w-screen h-screen bg-[#FAFAFA] relative block overflow-hidden">
+  <div
+      style="background-color: var(--el-bg-color);color: var(--el-text-color-primary)"
+      class="w-screen h-screen relative block overflow-hidden"
+  >
     <!-- element container -->
     <el-container>
-      <el-header class="shadow-md">
+      <el-header
+          class="shadow-md"
+          style="background-color: var(--el-bg-color)"
+      >
         <!-- header -->
-        <div class="w-full h-full relative flex">
+        <div
+            class="w-full h-full relative flex"
+        >
           <!-- title -->
           <div
               class="w-[180px] h-full relative flex justify-center cursor-pointer text-black text-[20px] font-bold"
               @click="goHome"
           >
             <!-- title -->
-            <span class="w-auto h-auto relative block my-auto">
+            <span
+                class="w-auto h-auto relative block my-auto"
+                style="color: var(--el-text-color-primary)"
+            >
               {{ title }}
             </span>
           </div>

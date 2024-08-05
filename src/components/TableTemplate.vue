@@ -34,7 +34,10 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-auto bg-white p-4">
+  <div
+      class="w-full h-auto p-4"
+      style="background-color: var(--el-bg-color)"
+  >
     <el-table
         style="width: 100%; height: 100%;"
         :data="data"
