@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useRouter } from "vue-router";
-import { $enums } from '../../composabels/enums'
-import { useRoute } from "vue-router";
-import { onMounted, watch } from "vue";
+import {onMounted, ref, watch} from 'vue'
+import {useRoute, useRouter} from "vue-router";
+import {$enums} from '../../composabels/enums'
 import TopFuncNav from "./_components/TopFuncNav.vue";
-import { useCounterStore } from '../../stores/counter'
+import {useCounterStore} from '../../stores/counter'
 import TagsComponents from "../../components/TagsComponents.vue";
 
 //router
@@ -95,9 +93,68 @@ function getRouteList() {
   }
 }
 /* ========================= 路由tags--end ========================= */
+
+/* ========================= 页面设置--start ========================= */
+const defaultSetting = {
+  text: '页面设置',
+  color: '',
+}
+const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
+const defaultPageTheme = [
+  {
+    text: '默认色',
+    label: 'primary',
+    value: '#A0CFFF'
+  },
+  {
+    text: '秋日胡杨',
+    label: 'fall',
+    value: '#E09D42'
+  },
+  {
+    text: '翡冷翠',
+    label: 'green',
+    value: '#3D9970'
+  },
+  {
+    text: '极客紫',
+    label: 'geek',
+    value: '#7A51D9'
+  },
+  {
+    text: '烈焰红',
+    label: 'fire',
+    value: '#FF4D4F'
+  }
+]
+const pageTheme = ref<DisplayTypes.themeColor[]>(defaultPageTheme)
+
+// 设置主题色
+function setTheme(color: string) {
+  const el = document.documentElement
+  getComputedStyle(el).getPropertyValue('--main-theme0color')
+  el.style.setProperty('--main-theme0color', color)
+  localStorage.setItem('themeColor', color)
+}
+function initTheme() {
+  if (localStorage.getItem('themeColor')) {
+    const el = document.documentElement
+    getComputedStyle(el).getPropertyValue('--main-theme0color')
+    el.style.setProperty('--main-theme0color', localStorage.getItem('themeColor') as string)
+    pageSetting.value.color = localStorage.getItem('themeColor') as string
+  } else {
+    const el = document.documentElement
+    getComputedStyle(el).getPropertyValue('--main-theme0color')
+    el.style.setProperty('--main-theme0color', '#A0CFFF')
+    localStorage.setItem('themeColor', '#A0CFFF')
+    pageSetting.value.color = '#A0CFFF'
+  }
+}
+/* ========================= 页面设置--end ========================= */
 onMounted(() => {
   persistenceRoute(route.fullPath)
   getRouteList()
+  initTheme()
 })
 watch(() => route.fullPath, () => {
   persistenceRoute(route.fullPath)
@@ -146,7 +203,7 @@ watch(() => route.matched, () => {
           <!-- left menu -->
           <div class="w-full h-full relative flex flex-col justify-start">
             <el-menu
-                active-text-color="#A0CFFF"
+                :active-text-color="pageSetting.color"
                 background-color="#001529"
                 class="el-menu-vertical-demo"
                 :default-active="defaultActive"
@@ -200,7 +257,49 @@ watch(() => route.matched, () => {
               style="border-radius: 10px 0 0 10px"
               v-model="page.editDrawer"
           >
-
+            <el-form
+                inline
+                label-width="auto"
+            >
+              <el-form-item
+                  label="用户名"
+              >
+                <el-input
+                    v-model="pageSetting.text"
+                    placeholder="请输入用户名"
+                    clearable
+                    prefix-icon="User"
+                />
+              </el-form-item>
+              <el-form-item
+                  label="设置主题色"
+              >
+                <el-select
+                    v-model="pageSetting.color"
+                    placeholder="请选择主题色"
+                    style="width: 240px"
+                    @change="setTheme"
+                >
+                  <el-option
+                      v-for="item in pageTheme"
+                      :key="item"
+                      :label="item.text"
+                      :value="item.value"
+                  >
+                    <div
+                        class="flex items-center"
+                    >
+                      <el-tag
+                          :color="item.value"
+                          style="margin-right: 8px"
+                          size="small"
+                      />
+                      <span :style="{ color: item.color }">{{ item.text }}</span>
+                    </div>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-form>
           </el-drawer>
         </el-main>
       </el-container>

@@ -4,4 +4,13 @@ declare namespace DisplayTypes{
         subTitle: string | null,
         icon: string,
     }
+    interface pageSetting {
+        text: string,
+        color: string,
+    }
+    interface themeColor {
+        text: string,
+        label: string,
+        value: string,
+    }
 }

@@ -4,9 +4,8 @@
   max-width: 1280px;
   font-weight: normal;
   --el-tag-hover-color: var(--main-theme0color-dark);
-  --el-color-primary: #A0CFFF;
-  --el-tag-bg-color: #A0CFFF;
-  --main-theme0color: #A0CFFF;
+  --el-color-primary: var(--main-theme0color);
+  --el-tag-bg-color: var(--main-theme0color);
   --main-theme0color-dark: #79BBFF;
   --main-theme0color-light: #C6E2FF;
   --success-theme-color: #B3E19D;

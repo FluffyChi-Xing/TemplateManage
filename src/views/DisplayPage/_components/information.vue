@@ -53,7 +53,7 @@ const cardData = ref<DisplayTypes.displayCard[]>(defaultCard)
             class="w-full h-auto flex mt-4 justify-end px-4"
         >
           <el-button
-              style="background-color: var(--success-theme-color);color: #fff"
+              style="background-color: var(--main-theme0color-dark);color: #fff"
               round
               size="large"
               @click="quickStart"
