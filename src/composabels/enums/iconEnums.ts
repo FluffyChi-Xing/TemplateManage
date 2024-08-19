@@ -3,5 +3,6 @@ export enum MenuIcons {
     Location,
     DataBoard,
     Tickets,
-    MessageBox
+    MessageBox,
+    Box
 }

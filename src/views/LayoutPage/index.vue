@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
-import {$enums} from '../../composabels/enums'
+// import {$enums} from '../../composabels/enums'
 import TopFuncNav from "./_components/TopFuncNav.vue";
 import {useCounterStore} from '../../stores/counter'
 import TagsComponents from "../../components/TagsComponents.vue";
+import Default from "../../layouts/default.vue";
 
 //router
 const router = useRouter()
@@ -19,43 +20,44 @@ function goHome() {
   router.push('/')
 }
 //change page
-const defaultActive = ref<string>('1')
-function changeRouter(e: string) {
-  switch (e) {
-    case '1':
-      router.push('/')
-        defaultActive.value = '1'
-          break;
-    case '2':
-      router.push('/notice')
-        defaultActive.value = '2'
-          break;
-    case '3-1':
-      router.push('/allCom')
-        defaultActive.value = '3-1'
-          break;
-    case '3-2':
-      router.push('/table')
-        defaultActive.value = '3-2'
-          break;
-  }
-}
-function persistenceRoute(e: string) {
-  switch (e) {
-    case '/':
-      defaultActive.value = '1'
-        break;
-    case '/notice':
-      defaultActive.value = '2'
-        break;
-    case '/allCom':
-      defaultActive.value = '3-1'
-        break;
-    case '/table':
-      defaultActive.value = '3-2'
-        break;
-  }
-}
+// const defaultActive = ref<string>('1')
+// function changeRouter(e: string, es: string[]) {
+//   console.log(es)
+//   switch (e) {
+//     case '1':
+//       router.push('/')
+//         defaultActive.value = '1'
+//           break;
+//     case '2':
+//       router.push('/notice')
+//         defaultActive.value = '2'
+//           break;
+//     case '3-1':
+//       router.push('/allCom')
+//         defaultActive.value = '3-1'
+//           break;
+//     case '3-2':
+//       router.push('/table')
+//         defaultActive.value = '3-2'
+//           break;
+//   }
+// }
+// function persistenceRoute(e: string) {
+//   switch (e) {
+//     case '/':
+//       defaultActive.value = '1'
+//         break;
+//     case '/notice':
+//       defaultActive.value = '2'
+//         break;
+//     case '/allCom':
+//       defaultActive.value = '3-1'
+//         break;
+//     case '/table':
+//       defaultActive.value = '3-2'
+//         break;
+//   }
+// }
 /* ========================= 菜单持久化--end ========================= */
 
 /* ========================= 路由tags--start ========================= */
@@ -152,13 +154,13 @@ function initTheme() {
 }
 /* ========================= 页面设置--end ========================= */
 onMounted(() => {
-  persistenceRoute(route.fullPath)
+  // persistenceRoute(route.fullPath)
   getRouteList()
   initTheme()
 })
-watch(() => route.fullPath, () => {
-  persistenceRoute(route.fullPath)
-})
+// watch(() => route.fullPath, () => {
+//   persistenceRoute(route.fullPath)
+// })
 watch(() => route.matched, () => {
   getRouteList()
 })
@@ -202,38 +204,46 @@ watch(() => route.matched, () => {
         <el-aside width="200px">
           <!-- left menu -->
           <div class="w-full h-full relative flex flex-col justify-start">
-            <el-menu
-                :active-text-color="pageSetting.color"
-                background-color="#001529"
-                class="el-menu-vertical-demo"
-                :default-active="defaultActive"
-                text-color="#A9A9A9FF"
-                style="height: 100%;"
-                @select="changeRouter"
-            >
-              <el-menu-item index="1">
-                <el-icon><component :is="$enums.MenuIcons[0]" /></el-icon>
-                <span>项目概况</span>
-              </el-menu-item>
-              <el-menu-item index="2">
-                <el-icon><component :is="$enums.MenuIcons[1]" /></el-icon>
-                <span>公告中心</span>
-              </el-menu-item>
-              <el-sub-menu>
-                <template #title>
-                  <el-icon><component :is="$enums.MenuIcons[2]" /></el-icon>
-                  <span>展示中心</span>
-                </template>
-                <el-menu-item index="3-1">
-                  <el-icon><Component :is="$enums.MenuIcons[4]" /></el-icon>
-                  <span>全部组件</span>
-                </el-menu-item>
-                <el-menu-item index="3-2">
-                  <el-icon><component :is="$enums.MenuIcons[3]" /></el-icon>
-                  <span>表格模块</span>
-                </el-menu-item>
-              </el-sub-menu>
-            </el-menu>
+<!--            <el-menu-->
+<!--                :active-text-color="pageSetting.color"-->
+<!--                background-color="#001529"-->
+<!--                class="el-menu-vertical-demo"-->
+<!--                :default-active="defaultActive"-->
+<!--                text-color="#A9A9A9FF"-->
+<!--                style="height: 100%;"-->
+<!--                @select="changeRouter"-->
+<!--            >-->
+<!--              <template-->
+<!--                  v-for="item in menuList"-->
+<!--                  :key="item.index"-->
+<!--              >-->
+<!--                <el-sub-menu-->
+<!--                    v-if="item.children?.length"-->
+<!--                    :index="item.index"-->
+<!--                >-->
+<!--                  <template #title>-->
+<!--                    <el-icon><Component :is="item.icon" /></el-icon>-->
+<!--                    <span>{{ item.title }}</span>-->
+<!--                  </template>-->
+<!--                  <el-menu-item-->
+<!--                      v-for="itm in item.children"-->
+<!--                      :key="itm.index"-->
+<!--                      :index="itm.index"-->
+<!--                  >-->
+<!--                    <el-icon><Component :is="itm.icon" /></el-icon>-->
+<!--                    <span>{{ itm.title }}</span>-->
+<!--                  </el-menu-item>-->
+<!--                </el-sub-menu>-->
+<!--                <el-menu-item-->
+<!--                    v-else-->
+<!--                    :index="item.index"-->
+<!--                >-->
+<!--                  <el-icon><component :is="item.icon" /></el-icon>-->
+<!--                  <span>{{ item.title }}</span>-->
+<!--                </el-menu-item>-->
+<!--              </template>-->
+<!--            </el-menu>-->
+            <default />
           </div>
         </el-aside>
         <el-main>

@@ -5,9 +5,10 @@ import LayoutPage from "@/views/LayoutPage/index.vue";
 import LayoutComponent from "@/views/LayoutPage/_components/LayoutComponent.vue";
 import DisplayPage from "@/views/DisplayPage/index.vue";
 import NoticeCenter from "@/views/LayoutPage/_components/NoticeCenter.vue";
-import TableBoard from "@/views/LayoutPage/_components/TableBoard.vue";
-import AllComponents from "@/views/LayoutPage/_components/AllComponents.vue";
+import TableBoard from "@/views/playground/_components/TableBoard.vue";
+import AllComponents from "@/views/playground/_components/AllComponents.vue";
 import Information from "@/views/DisplayPage/_components/information.vue";
+import StorgeManage from "@/views/playground/_components/StorgeManage.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -49,6 +50,14 @@ const router = createRouter({
           component: TableBoard,
           meta: {
             title: '展示中心 | 表格模块'
+          }
+        },
+        {
+          path: '/storge',
+          name: 'storge',
+          component: StorgeManage,
+          meta: {
+            title: '展示中心 | 库存管理'
           }
         }
       ],
