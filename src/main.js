@@ -1,4 +1,4 @@
-import './assets/main.css'
+import '@/assets/css/main.css'
 import './index.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -8,6 +8,8 @@ import router from './router'
 import 'nprogress/nprogress.css'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import '@/assets/iconfont/iconfont.css'
+import '@/assets/iconfont/iconfont.js'
 
 
 const app = createApp(App)

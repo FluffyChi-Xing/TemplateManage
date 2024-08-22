@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     DescriptionBlock: typeof import('./src/components/DescriptionBlock.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
@@ -39,8 +40,10 @@ declare module 'vue' {
     NoData: typeof import('./src/components/NoData.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
     TableTemplate: typeof import('./src/components/TableTemplate.vue')['default']
     TagsComponents: typeof import('./src/components/TagsComponents.vue')['default']
     TipComponent: typeof import('./src/components/TipComponent.vue')['default']
+    UserAvatar: typeof import('./src/components/UserAvatar.vue')['default']
   }
 }

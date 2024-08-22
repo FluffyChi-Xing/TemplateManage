@@ -1,4 +1,4 @@
-@import './base.css';
+@import 'base.css';
 
 #app {
   max-width: 1280px;
@@ -31,11 +31,49 @@ a,
   transition: 0.4s;
   padding: 3px;
 }
+.el-main {
+  padding: 0 !important;
+}
+
+.el-card .el-card__body {
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+}
+
+.main_primary_btns {
+  background-color: theme('colors.mainColor') !important;
+  border: 1px solid theme('colors.mainLight') !important;
+  border-radius: 4px !important;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white !important;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.main_primary_btns_date {
+    background-color: #fff !important;
+    border: 1px solid theme('colors.mainColor') !important;
+    border-radius: 4px !important;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: theme('colors.mainColor') !important;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
 .smooth-scroll {
   transition: all 0.3s ease-in-out;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--el-scrollbar-bg-color) var(--el-fill-color-light);
+}
+.global-card {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-shadow: none !important;
 }
 
 @media (min-width: 1024px) {

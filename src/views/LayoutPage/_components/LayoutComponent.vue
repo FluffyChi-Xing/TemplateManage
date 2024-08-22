@@ -13,9 +13,9 @@ function toDisplay() {
 </script>
 
 <template>
-  <div class="w-full h-full relative block">
+  <div class="w-full h-full p-4 relative block">
     <!-- main description -->
-    <div style="height: calc(100% - 70px)" class="w-full relative flex justify-between pt-5">
+    <div style="height: calc(100% - 70px)" class="w-full relative flex justify-between pt-4">
       <!-- #1 -->
       <div class="w-[66%] h-full relative block">
         <div class="w-full h-[170px] relative block">

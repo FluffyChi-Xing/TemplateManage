@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {onMounted, ref, watch} from 'vue'
+import {onMounted, reactive, ref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import {$enums} from "../composabels/enums";
+import UserAvatar from "../components/UserAvatar.vue";
 //router
 const router = useRouter()
 //title
@@ -118,6 +119,9 @@ const menuList = ref<MenuList[]>([
 ])
 /** ==== 菜单初始化-end ==== **/
 
+/** ==== 用户初始化-start ==== **/
+const username = ref<string>('张三')
+/** ==== 用户初始化-end ==== **/
 </script>
 
 <template>
@@ -131,6 +135,16 @@ const menuList = ref<MenuList[]>([
         style="height: 100%;"
         @select="changeRouter"
     >
+      <div
+          class="w-full h-28 pb-4 flex justify-end menu-head-bg flex-col"
+      >
+        <UserAvatar
+            :name="username"
+            shape="circle"
+            :icon="''"
+            :avatar="''"
+        />
+      </div>
       <template
           v-for="item in menuList"
           :key="item.index"
@@ -165,5 +179,9 @@ const menuList = ref<MenuList[]>([
 </template>
 
 <style scoped>
-
+.menu-head-bg {
+  background-image: url("@/assets/img/menu-bg@1x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

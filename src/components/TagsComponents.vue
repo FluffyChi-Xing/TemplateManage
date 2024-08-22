@@ -41,7 +41,7 @@ function removeTag(item: HomePageTypes.tagsComponent) {
 </script>
 
 <template>
-  <div class="w-auto h-auto flex my-auto">
+  <div class="w-auto pt-4 h-auto flex my-auto">
     <el-tag
         v-if="tags.length"
         v-for="tag in tags"

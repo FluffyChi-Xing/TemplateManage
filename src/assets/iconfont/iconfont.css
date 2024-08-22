@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4661615 */
+  src: url('iconfont.woff2?t=1724315580100') format('woff2'),
+       url('iconfont.woff?t=1724315580100') format('woff'),
+       url('iconfont.ttf?t=1724315580100') format('truetype'),
+       url('iconfont.svg?t=1724315580100#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont", serif !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tuichu:before {
+  content: "\e647";
+}
+
+.icon-Trips:before {
+  content: "\e897";
+}
+
+.icon-Copy:before {
+  content: "\e898";
+}
+
+.icon-Create:before {
+  content: "\e899";
+}
+
+.icon-Delete:before {
+  content: "\e89a";
+}
+
+.icon-Edit:before {
+  content: "\e89b";
+}
+
+.icon-Enable:before {
+  content: "\e89c";
+}
+
+.icon-Location:before {
+  content: "\e89d";
+}
+
+.icon-Lock:before {
+  content: "\e89e";
+}
+
+.icon-Move:before {
+  content: "\e89f";
+}
+
+.icon-Records:before {
+  content: "\e8a0";
+}
+
+.icon-Notification:before {
+  content: "\e8a1";
+}
+
+.icon-Statistics:before {
+  content: "\e8a2";
+}
+
+.icon-Stop:before {
+  content: "\e8a3";
+}
+
+.icon-Visualization:before {
+  content: "\e8a4";
+}
+
