@@ -1,27 +1,24 @@
 <script setup lang="ts">
 import {$enums} from "../composabels/enums";
-import NoData from "./NoData.vue";
+
 
 withDefaults(defineProps<{
   data: any[],
-  stripe: boolean | null,
-  maxHeight: number | null,
-  fit: boolean | null,
+  stripe?: boolean | null,
+  maxHeight?: number | null,
+  fit?: boolean | null,
   labProp: TablePageTypes.TableTemplate[],
-  size: string | null,
-  border: boolean | null,
-  height: number | string | null,
-  highLight: boolean | null,
-  lazy: boolean | null,
-  multiSelect: boolean | null,
-  options: TablePageTypes.TableOptions[],
-  fixed: string | null,
+  size?: string | null,
+  border?: boolean | null,
+  height?: number | string | null,
+  highLight?: boolean | null,
+  lazy?: boolean | null,
+  multiSelect?: boolean | null,
+  options?: TablePageTypes.TableOptions[],
+  fixed?: string | null
 }>(), {
-  data: () => [],
   stripe: false,
-  maxHeight: 0,
   fit: false,
-  labProp: () => [],
   size: '',
   border: false,
   height: '100%',
@@ -35,7 +32,7 @@ withDefaults(defineProps<{
 
 <template>
   <div
-      class="w-full h-auto p-4"
+      class="w-full flex flex-col p-4"
       style="background-color: var(--el-bg-color)"
   >
     <el-table
@@ -43,21 +40,21 @@ withDefaults(defineProps<{
         :data="data"
         :stripe="stripe"
         :max-height="maxHeight ? maxHeight : 250"
+        :header-cell-style="{backgroundColor: '#f5f7fa', color: '#000', textAlign: 'center'}"
         :fit="fit"
-        :size="$enums.String2Table(size)"
+        :size="$enums.String2Table(size ? size : 'medium')"
         :border="border"
-        :height="height ? height : 'auto'"
         :highlight-current-row="highLight"
         :lazy="lazy"
     >
       <el-table-column v-if="multiSelect" type="selection" />
       <el-table-column
-          v-if="labProp.length > 0"
+          v-if="labProp?.length > 0"
           v-for="(item,index) in labProp"
           :key="index"
           :prop="item.prop"
           :label="item.label"
-          :width="item.width ? item.width : 'auto'"
+          :width="item.width ? item.width : '100%'"
           :show-overflow-tooltip="item.overflow"
       >
         <template v-if="item.children">
@@ -82,8 +79,8 @@ withDefaults(defineProps<{
         </template>
       </el-table-column>
       <el-table-column
-          v-if="options.length"
-          :fixed="$enums.String2Fixed(fixed)"
+          v-if="options?.length"
+          :fixed="$enums.String2Fixed(fixed ? fixed : 'right')"
           label="操作"
           width="100"
       >

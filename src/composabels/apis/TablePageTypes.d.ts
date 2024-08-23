@@ -13,8 +13,8 @@ declare namespace TablePageTypes {
         label: string;
         prop: string | null;
         width: number | null;
-        overflow: boolean | null;
-        children: TableTemplate[] | null;
+        overflow?: boolean | null;
+        children?: TableTemplate[] | null;
     }
     interface TableOptions {
         text: string;

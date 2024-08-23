@@ -36,6 +36,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     ExampelShowCase: typeof import('./src/components/ExampelShowCase.vue')['default']
+    GenerateDialog: typeof import('./src/components/GenerateDialog.vue')['default']
     LayoutComponent: typeof import('./src/views/LayoutPage/_components/LayoutComponent.vue')['default']
     NoData: typeof import('./src/components/NoData.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -45,5 +46,8 @@ declare module 'vue' {
     TagsComponents: typeof import('./src/components/TagsComponents.vue')['default']
     TipComponent: typeof import('./src/components/TipComponent.vue')['default']
     UserAvatar: typeof import('./src/components/UserAvatar.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
