@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, reactive, ref, watch} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import {$enums} from "../composabels/enums";
 import UserAvatar from "../components/UserAvatar.vue";
@@ -42,6 +42,10 @@ function changeRouter(e: string, es: string[]) {
       router.push('/storge')
       defaultActive.value = '3-3'
       break;
+    case '4':
+      router.push('/usercenter/info')
+      defaultActive.value = '4'
+      break;
   }
 }
 function persistenceRoute(e: string) {
@@ -60,6 +64,12 @@ function persistenceRoute(e: string) {
       break;
     case '/storge':
       defaultActive.value = '3-3'
+      break;
+    case '/usercenter/info':
+      defaultActive.value = '4'
+      break;
+    case '/usercenter/edit':
+      defaultActive.value = '4'
       break;
   }
 }
@@ -116,6 +126,12 @@ const menuList = ref<MenuList[]>([
       }
     ]
   },
+  {
+    index: '4',
+    title: '用户中心',
+    icon: $enums.MenuIcons[6],
+    children: null
+  }
 ])
 /** ==== 菜单初始化-end ==== **/
 

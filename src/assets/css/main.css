@@ -63,6 +63,10 @@ a,
     transition: 0.4s;
 }
 
+.car-hov {
+  background-color: var(--main-theme0color);
+}
+
 .smooth-scroll {
   transition: all 0.3s ease-in-out;
   scroll-behavior: smooth;

@@ -9,6 +9,9 @@ import TableBoard from "@/views/playground/_components/TableBoard.vue";
 import AllComponents from "@/views/playground/_components/AllComponents.vue";
 import Information from "@/views/DisplayPage/_components/information.vue";
 import StorgeManage from "@/views/playground/_components/StorgeManage.vue";
+import UserCenter from '@/views/UserCenter/index.vue'
+import UserInfoPage from "@/views/UserCenter/_components/UserInfoPage.vue";
+import BackLinksPage from "@/components/BackLinksPage.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -58,6 +61,32 @@ const router = createRouter({
           component: StorgeManage,
           meta: {
             title: '展示中心 | 库存管理'
+          }
+        },
+        {
+          path: '/usercenter',
+          name: 'usercenter',
+          component: UserCenter,
+          meta: {
+            title: '用户中心'
+          },
+          children: [
+            {
+              path: '/usercenter/info',
+              name: 'info',
+              component: UserInfoPage,
+              meta: {
+                title: '用户信息'
+              }
+            }
+          ]
+        },
+        {
+          path: '/backlinks/:id',
+          name: 'backlinks',
+          component: BackLinksPage,
+          meta: {
+            title: '外链拦截'
           }
         }
       ],

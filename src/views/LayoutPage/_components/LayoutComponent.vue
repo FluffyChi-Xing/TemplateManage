@@ -10,6 +10,9 @@ const router = useRouter()
 function toDisplay() {
   router.push('/display/information')
 }
+function jump2DashBoard() {
+  router.push('/dashboard')
+}
 </script>
 
 <template>
@@ -37,6 +40,7 @@ function toDisplay() {
           <el-button
               style="background-color: var(--success-theme-color);color: #fff"
               icon="Select"
+              @click="jump2DashBoard"
           >
             进入工作台
           </el-button>
@@ -63,7 +67,7 @@ function toDisplay() {
               v-if="noticeList.length"
               class="w-full h-full bg-red-950 flex flex-col overflow-y-auto scroll-bar-init"
           >
-
+            <span>SomeThings</span>
           </div>
           <NoData
               v-else

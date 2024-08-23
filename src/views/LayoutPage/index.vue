@@ -175,7 +175,6 @@ watch(() => route.matched, () => {
     <el-container>
       <el-header
           class="shadow-md"
-          style="background-color: var(--el-bg-color);border-bottom: 1px solid var(--el-border-color)"
       >
         <!-- header -->
         <div
@@ -183,13 +182,12 @@ watch(() => route.matched, () => {
         >
           <!-- title -->
           <div
-              class="w-[180px] h-full relative flex justify-center cursor-pointer text-black text-[20px] font-bold"
+              class="w-[180px] h-full relative flex justify-center cursor-pointer text-white text-2xl font-bold"
               @click="goHome"
           >
             <!-- title -->
             <span
                 class="w-auto h-auto relative block my-auto"
-                style="color: var(--el-text-color-primary)"
             >
               {{ title }}
             </span>
@@ -325,12 +323,6 @@ watch(() => route.matched, () => {
   height: 100%;
 }
 :deep(.el-header) {
-  background-color: #fff;
-}
-:deep(.el-drawer.rtl) {
-  backdrop-filter: blur(8px) saturate(200%);
-  -webkit-backdrop-filter: blur(8px) saturate(200%);
-  background-color: rgba(255, 255, 255, 0.47);
-  border: 1px solid rgba(209, 213, 219, 0.3);
+  background: linear-gradient(90deg, #1E2938, #517BA8);
 }
 </style>
