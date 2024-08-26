@@ -246,7 +246,7 @@ watch(() => route.matched, () => {
         </el-aside>
         <el-main>
           <!-- page container -->
-          <div class="w-full bg-[#F8F9FB] h-full relative block">
+          <div class="w-full h-full relative block">
             <!-- tags banner -->
             <div class="w-full h-12 pb-4 flex gap-3 overflow-hidden">
               <TagsComponents
@@ -256,7 +256,9 @@ watch(() => route.matched, () => {
                   :closable="true"
               />
             </div>
-            <router-view />
+            <div class="overflow-y-auto bg-[#F8F9FB]">
+              <router-view />
+            </div>
           </div>
           <!-- edit drawer -->
           <el-drawer

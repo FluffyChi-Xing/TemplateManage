@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4661615 */
-  src: url('iconfont.woff2?t=1724392209712') format('woff2'),
-       url('iconfont.woff?t=1724392209712') format('woff'),
-       url('iconfont.ttf?t=1724392209712') format('truetype'),
-       url('iconfont.svg?t=1724392209712#iconfont') format('svg');
+  src: url('iconfont.woff2?t=1724657751374') format('woff2'),
+       url('iconfont.woff?t=1724657751374') format('woff'),
+       url('iconfont.ttf?t=1724657751374') format('truetype'),
+       url('iconfont.svg?t=1724657751374#iconfont') format('svg');
 }
 
 .iconfont {
@@ -12,6 +12,54 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-a-codestructure:before {
+  content: "\e971";
+}
+
+.icon-command:before {
+  content: "\e972";
+}
+
+.icon-test:before {
+  content: "\e976";
+}
+
+.icon-virus:before {
+  content: "\e977";
+}
+
+.icon-stop:before {
+  content: "\e978";
+}
+
+.icon-datingqiuzhu:before {
+  content: "\e6aa";
+}
+
+.icon-fangdongzhizu:before {
+  content: "\e6ab";
+}
+
+.icon-liwu:before {
+  content: "\e6ac";
+}
+
+.icon-jiudianyuding:before {
+  content: "\e6ad";
+}
+
+.icon-peixun:before {
+  content: "\e6ae";
+}
+
+.icon-quanbufenlei:before {
+  content: "\e6af";
+}
+
+.icon-shangjiaruzhu:before {
+  content: "\e6b0";
 }
 
 .icon-dengluzhuangtai-zaixian:before {

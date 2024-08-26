@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
-import { $request } from "../../../composabels/request";
 import {ElMessage} from "element-plus";
 import TableTemplate from "../../../components/TableTemplate.vue";
+import {$apis} from "../../../composabels/apis";
 
 const isLoading = ref<boolean>(false)
 /** ===== 获取假数据-start ===== **/
-const fakeUrl = ref<string>('http://jsonplaceholder.typicode.com/posts')
+// const fakeUrl = ref<string>('http://jsonplaceholder.typicode.com/posts')
 const fakeData = ref<any[]>([])
-async function getFakeData(url: string, method: string) {
+async function getFakeData() {
   isLoading.value = true
-  await $request(url, method).then(res => {
+  // await $request(url, method).then(res => {
+  //   fakeData.value = res
+  //   ElMessage.success('获取数据成功')
+  // })
+  await $apis.getSampleData().then((res: any) => {
     fakeData.value = res
     ElMessage.success('获取数据成功')
   })
@@ -20,7 +24,7 @@ async function getFakeData(url: string, method: string) {
 
 
 onMounted(async () => {
-  await getFakeData(fakeUrl.value, 'GET')
+  await getFakeData()
 })
 /** ===== 获取假数据-end ===== **/
 
@@ -32,9 +36,14 @@ const searchValue = ref<string>('')
 const pageSize = ref<number>(10)
 const currentPage = ref<number>(1)
 function filter(pageSize: number, pageNumber: number) {
-  tableData.value = fakeData.value.filter((item, index) => {
-    return index >= pageSize * (pageNumber - 1) && index < pageSize * pageNumber
-  })
+  if (fakeData.value.length > 1) {
+    tableData.value = fakeData.value.filter((item, index) => {
+      return index >= pageSize * (pageNumber - 1) && index < pageSize * pageNumber
+    })
+  }
+  else {
+    tableData.value = fakeData.value
+  }
 }
 const tableData = ref<any[]>()
 const tableLabels = [
@@ -69,6 +78,30 @@ function changePage(e: number) {
   }, 2000)
   isLoading.value = false
 }
+
+// 库存搜索
+async function searchItem() {
+  if (searchValue.value) {
+    await $apis.searchItem(Number(searchValue.value)).then((res: any) => {
+      // 清空表格数据
+      tableData.value = []
+      tableData.value = res
+      ElMessage.success('搜索成功')
+    })
+  } else {
+    // await getFakeData()
+    ElMessage({
+      type: 'warning',
+      message: '请输入搜索内容'
+    })
+  }
+}
+
+// 刷新表格
+async function refreshTable() {
+  await getFakeData()
+}
+
 /** ===== 表格初始化-end ===== **/
 </script>
 
@@ -96,12 +129,22 @@ function changePage(e: number) {
               <el-input
                   v-model="searchValue"
                   placeholder="请输入搜索内容"
+                  prefix-icon="Search"
+                  @keydown.enter="searchItem"
               />
             </el-form-item>
             <el-form-item>
               <el-button
+                  class="main_primary_btns_date mr-2"
+                  icon="Refresh"
+                  @click="refreshTable"
+              >
+                刷新
+              </el-button>
+              <el-button
                   class="main_primary_btns"
                   icon="Search"
+                  @click="searchItem"
               >
                 搜索
               </el-button>
@@ -139,6 +182,6 @@ function changePage(e: number) {
   </div>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import "@/assets/css/element-edit.scss";
 </style>

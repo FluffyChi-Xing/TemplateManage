@@ -1,10 +1,15 @@
 import { $fetch, FetchOptions } from 'ofetch'
-import {ElMessage} from "element-plus";
+import { ElMessage } from "element-plus";
 enum fetchMethod {
     GET = 'GET',
     POST = 'POST',
     DELETE = 'DELETE',
     PUT = 'PUT'
+}
+interface RequestObj {
+    url: string;
+    req?: any;
+    isGraph?: boolean;
 }
 /*
 @base: 基础路径 可选
@@ -12,33 +17,27 @@ enum fetchMethod {
 @method: 请求方法 必填 参数类型为枚举类型
 @fetchOptions: 请求配置项 可选
  */
-export function $request(url: string, method: fetchMethod, base?: string, fetchOptions?: FetchOptions<ResponseTypeCustom>) {
+export function $request(url: RequestObj, fetchOptions?: FetchOptions<ResponseTypeCustom>, base?: string) {
     if (base) {
-        url = base + url
+        url.url = base + url.url
     }
     // 检查请求方法
-    if (!fetchMethod[method]) {
-        throw new Error('请求方法不存在')
-    }
-    // 处理fetchOptions
-    if (fetchOptions) {
-        fetchOptions.method = method
+    let method: fetchMethod
+    if (fetchOptions?.method) {
+        method = fetchOptions.method as fetchMethod
     } else {
-        fetchOptions = {
-            method: method
-        }
+        method = fetchMethod.GET
     }
     // 处理完后使用service发送请求
-    return service(url, fetchOptions)
+    return service(url.url, { ...fetchOptions, method })
 }
 
 const service = $fetch.create({
-    async onRequestError({ request, options, error }) {
+    async onRequestError() {
         // TODO 请求错误拦截
-        console.error('request', request, options, error)
         ElMessage.error('网络错误')
     },
-    async onResponse({ request, response, options }) {
+    async onResponse({response}) {
         // TODO 响应拦截
         return new Promise((resolve, reject) => {
             if (response.status === 401) {
@@ -52,10 +51,10 @@ const service = $fetch.create({
             }
         })
     },
-    async onResponseError({ request, response, options }) {
+    async onResponseError({response}) {
         // TODO 响应错误拦截
         if (response.status.toString().startsWith('4') || response.status.toString().startsWith('5')) {
-            console.error('optionsoptionsoptions', options, response)
+            // console.error('optionsoptionsoptions', options, response)
             ElMessage.error('请求失败')
         }
     },

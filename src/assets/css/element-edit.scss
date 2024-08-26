@@ -1,0 +1,38 @@
+@mixin main_primary_date_color {
+  background-color: #fff !important;
+  border: 1px solid theme('colors.mainColor') !important;
+  border-radius: 4px !important;
+}
+
+@mixin main_primary_color {
+  background-color: theme('colors.mainColor') !important;
+  border: 1px solid theme('colors.mainLight') !important;
+  border-radius: 4px !important;
+}
+
+@mixin main_primary_btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white !important;
+  transition: 0.4s;
+}
+
+@mixin main_primary_date_btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.4s;
+  color: theme('colors.mainColor') !important;
+}
+
+
+.main_primary_btn {
+  @include main_primary_btn;
+  @include main_primary_color;
+}
+
+.main_primary_date_btn {
+  @include main_primary_date_btn;
+  @include main_primary_date_color;
+}

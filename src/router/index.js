@@ -12,6 +12,7 @@ import StorgeManage from "@/views/playground/_components/StorgeManage.vue";
 import UserCenter from '@/views/UserCenter/index.vue'
 import UserInfoPage from "@/views/UserCenter/_components/UserInfoPage.vue";
 import BackLinksPage from "@/components/BackLinksPage.vue";
+import DataScreen from '@/views/DataScreen/index.vue'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -87,6 +88,14 @@ const router = createRouter({
           component: BackLinksPage,
           meta: {
             title: '外链拦截'
+          }
+        },
+        {
+          path: '/dataScreen',
+          name: 'dataScreen',
+          component: DataScreen,
+          meta: {
+            title: '数据大屏'
           }
         }
       ],

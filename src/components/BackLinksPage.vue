@@ -16,12 +16,14 @@ function jump2Outer() {
 <template>
   <div class="w-full h-full flex justify-center p-4">
     <el-card
-        class="w-[400px] p-4 h-[400px] flex my-auto flex-col justify-center"
+        class="w-[400px] p-4 flex my-auto flex-col justify-center"
     >
       <template #header>
-        <span class="text-black font-bold mx-auto">外链拦截</span>
+        <div class="w-full h-10 flex justify-start px-4">
+          <span class="text-white font-bold my-auto">外链拦截</span>
+        </div>
       </template>
-      <div class="w-full h-full flex flex-col justify-center">
+      <div class="w-full h-auto p-4 flex flex-col justify-center">
         <div class="text-xl w-auto h-auto my-auto text-black font-bold">
           你确定要访问
           <span class="text-gray-500 hover:text-[#79BBFF] cursor-pointer text-xl mx-2">{{ params?.id }}</span>
@@ -39,5 +41,12 @@ function jump2Outer() {
 </template>
 
 <style scoped>
-
+:deep(.el-card__header) {
+  width: 100%;
+  padding: 0;
+  background: linear-gradient(90deg, #1E2938, #517BA8);
+}
+:deep(.el-card) {
+  padding: 0;
+}
 </style>

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import {ref, onMounted, reactive, computed} from "vue";
-import {$request} from "../../../composabels/request";
+import {ref, onMounted, computed} from "vue";
+// import {$request} from "../../../composabels/request";
 import {useRouter} from "vue-router";
+import {$apis} from "../../../composabels/apis";
+import {ElMessage} from "element-plus";
 
 const router = useRouter()
 
 /** ===== 用户数据初始化-start ===== **/
 const userAvatar = ref<string>('https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png')
 const UserData = ref<any>()
-const requestUrl = ref<string>('https://jsonplaceholder.typicode.com/users/5')
+// const requestUrl = ref<string>('https://jsonplaceholder.typicode.com/users/5')
 const isLoading = ref<boolean>(false)
 const userAddress = ref<UserInfoTypes.UserAddress>()
 const userCompany = ref<UserInfoTypes.UserCompany>()
@@ -21,7 +23,10 @@ const websites = ref<string>('')
 const DataUser = ref<any>()
 async function initUserInfo() {
   isLoading.value = true
-  await $request(requestUrl.value, "GET").then((res: any) => {
+  // await $request(requestUrl.value, "GET").then((res: any) => {
+  //   UserData.value = res
+  // })
+  await $apis.getUserInfo().then((res: any) => {
     UserData.value = res
   })
   const { address, company, email, id, name, phone, username, website } = UserData.value
@@ -47,9 +52,25 @@ function isBackLinks(item: string) {
   }
 }
 
+// 获取用户头像连接
+async function getUserAvatar() {
+  await $apis.getUserAvatar().then((res: any) => {
+    userAvatar.value = res.url
+  })
+}
 
-onMounted(() => {
-  initUserInfo()
+// 编辑用户信息
+function editSubmit() {
+  ElMessage({
+    type: 'warning',
+    message: '暂未开放'
+  })
+}
+
+
+onMounted(async () => {
+  await initUserInfo()
+  await getUserAvatar()
 })
 /** ===== 用户数据初始化-end ===== **/
 </script>
@@ -133,68 +154,81 @@ onMounted(() => {
       </div>
       <div class="col-span-7 flex flex-col">
         <el-card
-            class="global-card w-full flex flex-col p-4"
+            class="global-card w-full flex p-4"
         >
           <el-skeleton
               :loading="isLoading"
               :rows="10"
               animated
           >
-            <el-form
-                v-model="DataUser"
-                label-width="auto"
-                class="w-60 mx-auto"
-            >
-              <el-form-item
-                  label="用户ID"
+            <div class="w-full h-full flex flex-col justify-center">
+              <el-form
+                  v-model="DataUser"
+                  label-width="auto"
+                  class="w-60 mx-auto"
               >
-                <el-input
-                    disabled
-                    :palceholder="userId ? userId : '暂无'"
-                />
-              </el-form-item>
-              <el-form-item
-                  label="用户名"
-              >
-                <el-input
-                    disabled
-                    :palceholder="userName ? userName : '暂无'"
-                />
-              </el-form-item>
-              <el-form-item
-                  label="昵称"
-              >
-                <el-input
-                    disabled
-                    :palceholder="pickName ? pickName : '暂无'"
-                />
-              </el-form-item>
-              <el-form-item
-                  label="邮箱"
-              >
-                <el-input
-                    disabled
-                    :palceholder="emails ? emails : '暂无'"
-                />
-              </el-form-item>
-              <el-form-item
-                  label="电话"
-              >
-                <el-input
-                    disabled
-                    :palceholder="phones ? phones : '暂无'"
-                />
-              </el-form-item>
-              <el-form-item>
-               <div class="w-full h-auto flex justify-end">
-                 <el-button
-                     class="main_primary_btns"
-                 >
-                   修改
-                 </el-button>
-               </div>
-              </el-form-item>
-            </el-form>
+                <el-form-item
+                    label="用户ID"
+                >
+                  <el-input
+                      disabled
+                      v-model="userId"
+                      palceholder="请输入用户ID"
+                      clearable
+                  />
+                </el-form-item>
+                <el-form-item
+                    label="用户名"
+                >
+                  <el-input
+                      disabled
+                      v-model="userName"
+                      placeholder="请输入用户名"
+                      clearable
+                  />
+                </el-form-item>
+                <el-form-item
+                    label="昵称"
+                >
+                  <el-input
+                      disabled
+                      v-model="pickName"
+                      placeholder="请输入昵称"
+                      clearable
+                  />
+                </el-form-item>
+                <el-form-item
+                    label="邮箱"
+                >
+                  <el-input
+                      disabled
+                      v-model="emails"
+                      placeholder="请输入邮箱"
+                      clearable
+                  />
+                </el-form-item>
+                <el-form-item
+                    label="电话"
+                >
+                  <el-input
+                      disabled
+                      v-model="phones"
+                      plcaeholder="请输入电话"
+                      clearable
+                  />
+                </el-form-item>
+                <el-form-item>
+                  <div class="w-full h-auto flex justify-end">
+                    <el-button
+                        class="main_primary_btns"
+                        @click="editSubmit"
+                    >
+                      修改
+                    </el-button>
+                  </div>
+                </el-form-item>
+              </el-form>
+            </div>
           </el-skeleton>
         </el-card>
       </div>

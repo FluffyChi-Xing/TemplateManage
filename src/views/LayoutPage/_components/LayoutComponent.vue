@@ -45,7 +45,7 @@ function jump2DashBoard() {
             进入工作台
           </el-button>
         </div>
-        <div style="height: calc(100% - 242px)" class="w-full relative block">
+        <div class="w-full h-[300px] relative block">
           <el-card
               style="height: 100%"
           >

@@ -46,6 +46,10 @@ function changeRouter(e: string, es: string[]) {
       router.push('/usercenter/info')
       defaultActive.value = '4'
       break;
+    case '5':
+      router.push('/dataScreen')
+      defaultActive.value = '5'
+      break;
   }
 }
 function persistenceRoute(e: string) {
@@ -70,6 +74,9 @@ function persistenceRoute(e: string) {
       break;
     case '/usercenter/edit':
       defaultActive.value = '4'
+      break;
+    case '/dataScreen':
+      defaultActive.value = '5'
       break;
   }
 }
@@ -130,6 +137,12 @@ const menuList = ref<MenuList[]>([
     index: '4',
     title: '用户中心',
     icon: $enums.MenuIcons[6],
+    children: null
+  },
+  {
+    index: '5',
+    title: '数据大屏',
+    icon: $enums.MenuIcons[7],
     children: null
   }
 ])
