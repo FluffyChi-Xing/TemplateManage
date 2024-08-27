@@ -6,6 +6,7 @@ export default {
       colors: {
         mainColor: '#79BBFF', // 主色调
         warning: '#F89898', // 警告色
+        notice: '#f5a566',
         success: '#8FCB7E', // 成功色
         mainLight: '#C6E2FF' // 主色调浅色
       }

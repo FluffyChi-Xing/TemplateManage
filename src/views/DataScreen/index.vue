@@ -147,7 +147,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full h-full flex p-4">
+  <div class="w-full h-screen flex p-4">
     <div class="w-full h-full overflow-hidden flex flex-col">
       <div class="w-full h-auto grid grid-cols-4 gap-4 mb-4">
         <DataCard

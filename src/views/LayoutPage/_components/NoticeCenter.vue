@@ -55,11 +55,11 @@ const tableData = [
 </script>
 
 <template>
-  <div class="w-full h-full p-4">
+  <div class="w-full h-full p-4 flex flex-col overflow-y-auto">
     <!-- #1 -->
     <div class="w-full h-16 flex">
       <el-card
-          class="w-full h-full global-card p-4"
+          class="w-full h-auto global-card p-4"
       >
         <div class="w-auto h-auto text-xl text-black font-bold">
           消息中心
@@ -74,7 +74,7 @@ const tableData = [
       <el-card
           class="w-full h-full global-card p-4"
       >
-        <div style="height: 600px" class="w-full flex flex-col overflow-hidden">
+        <div class="w-full h-full flex flex-col">
           <div
               style="height: calc(100% - 32px)"
               class="w-full flex"
@@ -86,7 +86,7 @@ const tableData = [
                 :border="true"
             />
           </div>
-          <div class="w-full h-auto flex justify-between">
+          <div class="w-full h-auto flex mt-auto justify-between">
             <span>共 {{ totalItem }} 条</span>
             <el-pagination
                 layout="prev, pager, next"

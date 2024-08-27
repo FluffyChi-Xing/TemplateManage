@@ -3,13 +3,13 @@ import { useRoute,useRouter } from "vue-router";
 
 const route = useRoute()
 const router = useRouter()
-const params = route.params
+const params = route.params.pathMatch
 
 function goBack() {
   router.back()
 }
 function jump2Outer() {
-  window.open(String(params?.id), '_blank')
+  window.open(String(params), '_blank')
 }
 </script>
 
@@ -26,7 +26,7 @@ function jump2Outer() {
       <div class="w-full h-auto p-4 flex flex-col justify-center">
         <div class="text-xl w-auto h-auto my-auto text-black font-bold">
           你确定要访问
-          <span class="text-gray-500 hover:text-[#79BBFF] cursor-pointer text-xl mx-2">{{ params?.id }}</span>
+          <span class="text-gray-500 hover:text-[#79BBFF] cursor-pointer text-xl mx-2">{{ params }}</span>
           吗?
         </div>
       </div>

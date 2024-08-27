@@ -106,9 +106,9 @@ async function refreshTable() {
 </script>
 
 <template>
-  <div class="w-full h-full flex justify-center p-4 scroll-bar-init overflow-hidden">
+  <div class="w-full h-full flex flex-col p-4">
     <div class="w-full has-footer flex flex-col justify-center align-middle">
-      <el-card class="global-card flex p-4 mb-4 h-auto">
+      <el-card class="global-card flex p-4 my-4 h-auto">
         <div class="w-full h-full flex flex-col align-middle">
           <div class="w-full h-auto flex mb-4">
             <span class="text-xl text-black font-bold my-auto">库存管理</span>

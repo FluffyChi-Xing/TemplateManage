@@ -14,6 +14,7 @@ import UserInfoPage from "@/views/UserCenter/_components/UserInfoPage.vue";
 import BackLinksPage from "@/components/BackLinksPage.vue";
 import DataScreen from '@/views/DataScreen/index.vue'
 import InforPage from '@/views/Information/index.vue'
+import PaperList from "@/views/Information/_components/PaperList.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -84,7 +85,7 @@ const router = createRouter({
           ]
         },
         {
-          path: '/backlinks/:id',
+          path: '/backlinks/:pathMatch(.*)*',
           name: 'backlinks',
           component: BackLinksPage,
           meta: {
@@ -105,7 +106,18 @@ const router = createRouter({
           component: InforPage,
           meta: {
             title: '资讯中心'
-          }
+          },
+          children: [
+            {
+              path: '',
+              name: 'paperlist',
+              component: PaperList,
+            },
+            {
+              path: '/inforcenter/:id',
+              name: 'paperItem'
+            }
+          ]
         }
       ],
     },
