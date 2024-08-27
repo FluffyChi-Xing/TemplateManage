@@ -248,7 +248,7 @@ watch(() => route.matched, () => {
           <!-- page container -->
           <div class="w-full h-full relative block">
             <!-- tags banner -->
-            <div class="w-full h-12 pb-4 flex gap-3 overflow-hidden">
+            <div class="w-full h-16 pb-4 flex gap-3 overflow-hidden">
               <TagsComponents
                   :tags="tagsList"
                   tags=""
@@ -256,7 +256,7 @@ watch(() => route.matched, () => {
                   :closable="true"
               />
             </div>
-            <div class="overflow-y-auto bg-[#F8F9FB]">
+            <div class="bg-[#F8F9FB] w-full h-full">
               <router-view />
             </div>
           </div>

@@ -56,16 +56,14 @@ function jump2DashBoard() {
         </div>
       </div>
       <!-- #2 -->
-      <div class="w-[33%] h-full relative block">
-        <el-card
-            style="height: 100%"
-        >
+      <div class="w-[33%] h-auto relative block">
+        <el-card>
           <template #header>
             <span>公告板</span>
           </template>
           <div
               v-if="noticeList.length"
-              class="w-full h-full bg-red-950 flex flex-col overflow-y-auto scroll-bar-init"
+              class="w-full h-auto flex flex-col overflow-y-auto scroll-bar-init"
           >
             <span>SomeThings</span>
           </div>

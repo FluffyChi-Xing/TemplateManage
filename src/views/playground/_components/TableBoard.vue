@@ -516,17 +516,19 @@ onMounted(() => {
     </div>
     <!-- Tree -->
     <div class="w-1/3 h-full flex flex-col p-4 justify-start">
-      <el-tree
-          class="mx-auto"
-          v-if="data.length"
-          style="max-width: 400px"
-          :data="data"
-          :props="defaultProps"
-          @node-click="handleNodeClick"
-      />
-      <NoData
-          v-else
-      />
+      <el-card class="global-card w-full h-auto flex flex-col sticky top-[50px]">
+        <el-tree
+            class="mx-auto"
+            v-if="data.length"
+            style="max-width: 400px"
+            :data="data"
+            :props="defaultProps"
+            @node-click="handleNodeClick"
+        />
+        <NoData
+            v-else
+        />
+      </el-card>
     </div>
   </div>
 </template>

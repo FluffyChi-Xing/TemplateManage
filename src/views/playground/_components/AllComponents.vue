@@ -93,7 +93,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-row justify-between overflow-hidden">
+  <div class="w-full h-full flex flex-row justify-between">
     <div id="container" class="w-2/3 h-full flex px-4 flex-col smooth-scroll overflow-y-auto">
       <DescriptionBlock
           :title="$doc.OverViewDoc.overview_1[0]"
@@ -179,17 +179,19 @@ onMounted(() => {
       </ExampelShowCase>
     </div>
     <div class="w-1/3 h-full flex flex-col p-4 justify-start">
-      <el-tree
-          class="mx-auto"
-          v-if="data.length"
-          style="max-width: 400px"
-          :data="data"
-          :props="defaultProps"
-          @node-click="handleNodeClick"
-      />
-      <NoData
-          v-else
-      />
+      <el-card class="global-card w-full h-auto flex flex-col sticky top-[50px]">
+        <el-tree
+            class="mx-auto"
+            v-if="data.length"
+            style="max-width: 400px"
+            :data="data"
+            :props="defaultProps"
+            @node-click="handleNodeClick"
+        />
+        <NoData
+            v-else
+        />
+      </el-card>
     </div>
   </div>
 </template>

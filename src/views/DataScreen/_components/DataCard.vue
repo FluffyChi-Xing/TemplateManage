@@ -18,7 +18,7 @@ const icon = computed(() => {
 </script>
 
 <template>
-  <div class="w-full h-48 flex">
+  <div class="w-full h-36 flex">
     <el-card
         class="global-card w-full flex"
     >

@@ -4,6 +4,7 @@ import {computed, onMounted, ref} from "vue";
 import {$apis} from "../../composabels/apis";
 import * as echarts from 'echarts'
 import NeedHandle from "./_components/NeedHandle.vue";
+import GoodsNotice from "./_components/GoodsNotice.vue";
 
 /** ===== 数据卡片初始化-start ===== **/
 // interface cardList {
@@ -131,6 +132,18 @@ const needHandleList = ref<needHandle[]>([
   }
 ])
 /** ===== 待处理事项初始化-end ===== **/
+
+/** ===== 消息中心-start ===== **/
+const noticeData = ref<any>()
+async function getNoticeCenter() {
+  await $apis.getNotices().then((res: any) => {
+    noticeData.value = res
+  })
+}
+onMounted(async () => {
+  await getNoticeCenter()
+})
+/** ===== 消息中心-end ===== **/
 </script>
 
 <template>
@@ -167,8 +180,8 @@ const needHandleList = ref<needHandle[]>([
             <template #header>
               <span class="font-bold">常用菜单</span>
             </template>
-            <div class="w-full h-full flex overflow-x-auto">
-
+            <div class="w-full h-full flex items-center overflow-x-auto">
+              <span class="w-auto h-auto flex mx-auto text-gray-500">空空如也~</span>
             </div>
           </el-card>
         </div>
@@ -179,6 +192,9 @@ const needHandleList = ref<needHandle[]>([
             <template #header>
               <span class="font-bold">消息中心</span>
             </template>
+            <GoodsNotice
+                :data="noticeData"
+            />
           </el-card>
         </div>
       </div>
