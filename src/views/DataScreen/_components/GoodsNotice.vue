@@ -20,17 +20,17 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-auto flex flex-col">
+  <div class="w-full h-full overflow-y-auto flex">
     <div
         v-if="data?.length"
-        class="w-auto h-auto flex"
+        class="w-full h-auto flex flex-col"
     >
       <div
           v-for="item in data"
           :key="item.id"
-          class="w-full h-10 flex hover:bg-mainColor"
+          class="w-full h-auto flex flex-col"
       >
-        <div class="w-full h-auto flex justify-between">
+        <div class="w-full h-auto flex justify-between hover:bg-mainColor">
           <div class="w-auto h-auto flex text-center text-black">{{ item.id }}</div>
           <div class="w-auto h-auto flex text-center">
             {{ item.name }} | {{ item.inner?.Color }} | {{ item.inner?.Price }} | {{ item.inner?.Capacity }} | {{ item.inner?.Generation }}

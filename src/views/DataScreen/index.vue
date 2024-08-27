@@ -148,7 +148,7 @@ onMounted(async () => {
 
 <template>
   <div class="w-full h-full flex p-4">
-    <div class="w-full h-full flex overflow-y-auto flex-col">
+    <div class="w-full h-full overflow-hidden flex flex-col">
       <div class="w-full h-auto grid grid-cols-4 gap-4 mb-4">
         <DataCard
             v-for="item in initCard"
@@ -187,14 +187,19 @@ onMounted(async () => {
         </div>
         <div class="w-full h-full flex">
           <el-card
-              class="w-full h-full flex flex-col p-4 global-card"
+              class="w-full h-[304px] flex flex-col p-4 global-card"
           >
             <template #header>
               <span class="font-bold">消息中心</span>
             </template>
-            <GoodsNotice
-                :data="noticeData"
-            />
+            <div
+                class="w-full flex"
+                style="height: calc(100% - 32px)"
+            >
+              <GoodsNotice
+                  :data="noticeData"
+              />
+            </div>
           </el-card>
         </div>
       </div>

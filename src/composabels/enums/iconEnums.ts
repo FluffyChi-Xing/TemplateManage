@@ -6,5 +6,6 @@ export enum MenuIcons {
     MessageBox,
     Box,
     User,
-    PieChart
+    PieChart,
+    Compass
 }

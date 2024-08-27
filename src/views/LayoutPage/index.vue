@@ -256,7 +256,7 @@ watch(() => route.matched, () => {
                   :closable="true"
               />
             </div>
-            <div class="bg-[#F8F9FB] w-full h-full">
+            <div class="bg-[#F8F9FB] overflow-y-auto w-full">
               <router-view />
             </div>
           </div>

@@ -50,6 +50,10 @@ function changeRouter(e: string, es: string[]) {
       router.push('/dataScreen')
       defaultActive.value = '5'
       break;
+    case '6':
+      router.push('/inforcenter')
+      defaultActive.value = '6'
+      break;
   }
 }
 function persistenceRoute(e: string) {
@@ -77,6 +81,9 @@ function persistenceRoute(e: string) {
       break;
     case '/dataScreen':
       defaultActive.value = '5'
+      break;
+    case '/inforcenter':
+      defaultActive.value = '6'
       break;
   }
 }
@@ -143,6 +150,12 @@ const menuList = ref<MenuList[]>([
     index: '5',
     title: '数据大屏',
     icon: $enums.MenuIcons[7],
+    children: null
+  },
+  {
+    index: '6',
+    title: '资讯中心',
+    icon: $enums.MenuIcons[8],
     children: null
   }
 ])

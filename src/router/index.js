@@ -13,6 +13,7 @@ import UserCenter from '@/views/UserCenter/index.vue'
 import UserInfoPage from "@/views/UserCenter/_components/UserInfoPage.vue";
 import BackLinksPage from "@/components/BackLinksPage.vue";
 import DataScreen from '@/views/DataScreen/index.vue'
+import InforPage from '@/views/Information/index.vue'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -96,6 +97,14 @@ const router = createRouter({
           component: DataScreen,
           meta: {
             title: '数据大屏'
+          }
+        },
+        {
+          path: '/inforcenter',
+          name: 'inforcenter',
+          component: InforPage,
+          meta: {
+            title: '资讯中心'
           }
         }
       ],
