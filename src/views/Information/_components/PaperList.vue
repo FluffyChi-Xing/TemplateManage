@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import {$apis} from "../../../composabels/apis";
 import { useRouter } from "vue-router";
 import PaperItem from "./PaperItem.vue";
+import NoData from "../../../components/NoData.vue";
 
 
 const router = useRouter()
@@ -28,13 +29,22 @@ function jump2paper(index: any) {
 <template>
   <div class="w-full h-auto flex flex-col">
     <el-card class="w-full h-auto global-card p-4">
-      <PaperItem
-          v-for="(item, index) in paperList"
-          :key="index"
-          :title="item.title"
-          :index="index + 1"
-          :description="item.description"
-          @click="jump2paper(index)"
+      <div
+          v-if="paperList"
+          class="w-auto h-auto flex flex-col"
+      >
+        <PaperItem
+            v-for="(item, index) in paperList"
+            :key="index"
+            :title="item.title"
+            :index="index + 1"
+            :description="item.description"
+            @click="jump2paper(index)"
+        />
+      </div>
+      <NoData
+          v-else
+          description="暂无数据"
       />
     </el-card>
   </div>
