@@ -17,6 +17,8 @@ import InforPage from '@/views/Information/index.vue'
 import PaperList from "@/views/Information/_components/PaperList.vue";
 import MoreInfo from "@/views/Information/MoreInfo.vue";
 import LoginPage  from '@/views/LoginPage/index.vue'
+import MarketingCenter from '@/views/MarketingPage/index.vue'
+import CouponsList from "@/views/MarketingPage/_components/CouponsList.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -119,6 +121,24 @@ const router = createRouter({
               path: '/inforcenter/:id',
               name: 'paperItem',
               component: MoreInfo,
+            }
+          ]
+        },
+        {
+          path: '/marketcenter',
+          name: 'marketcenter',
+          meta: {
+            title: '营销中心'
+          },
+          component: MarketingCenter,
+          children: [
+            {
+              path: '',
+              name: 'marketingList',
+              component: CouponsList,
+              meta: {
+                title: '优惠券列表'
+              }
             }
           ]
         }

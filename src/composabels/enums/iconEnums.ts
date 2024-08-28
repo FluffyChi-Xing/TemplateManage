@@ -7,5 +7,6 @@ export enum MenuIcons {
     Box,
     User,
     PieChart,
-    Compass
+    Compass,
+    Van
 }

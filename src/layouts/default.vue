@@ -54,6 +54,10 @@ function changeRouter(e: string, es: string[]) {
       router.push('/inforcenter')
       defaultActive.value = '6'
       break;
+    case '7':
+      router.push('/marketcenter')
+      defaultActive.value = '7'
+      break;
   }
 }
 function persistenceRoute(e: string) {
@@ -84,6 +88,9 @@ function persistenceRoute(e: string) {
       break;
     case '/inforcenter':
       defaultActive.value = '6'
+      break;
+    case '/marketcenter':
+      defaultActive.value = '7'
       break;
   }
 }
@@ -156,6 +163,12 @@ const menuList = ref<MenuList[]>([
     index: '6',
     title: '资讯中心',
     icon: $enums.MenuIcons[8],
+    children: null
+  },
+  {
+    index: '7',
+    title: '营销中心',
+    icon: $enums.MenuIcons[9],
     children: null
   }
 ])
