@@ -90,6 +90,12 @@ const option = {
     data: ['A', 'B', 'C', 'D', 'E']
   },
   yAxis: {},
+  grid: {
+    left: 30,
+    right: 30,
+    top: 20,
+    bottom: 20
+  },
   series: [
     {
       data: [10, 22, 28, 23, 19],
