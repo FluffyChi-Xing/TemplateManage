@@ -14,3 +14,7 @@ export function getMoreInfo(index: number) {
     const url = `${baseUrl}/HotComments?${index}`
     return $request({url})
 }
+export function getDetailMusic(id: number) {
+    const url = `${baseUrl}/Netease?format=json&id=${id}`
+    return $request({url})
+}

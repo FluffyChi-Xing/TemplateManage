@@ -29,17 +29,37 @@ interface returnData {
   comment_nickname: string,
   text: string,
 }
+interface musicData {
+  link: string,
+  songId: number,
+  title: string,
+  author: string,
+  lrc: string,
+  url: string,
+  pic: string,
+}
 const detailData = ref<returnData>()
+const detailMusic = ref<musicData>()
+const musicId = ref<number>()
 const isLoading = ref<boolean>(false)
+async function getDetailMusic(id: number) {
+  await $apis.getDetailMusic(id).then((res: any) => {
+    detailMusic.value = res.data
+  })
+}
 async function getDetailPaper() {
   await $apis.getMoreInfo(index.value).then((res: any) => {
     detailData.value = res.data
-    console.log(detailData.value)
+    const url = new URL(res.data?.mp3_url)
+    const params = new URLSearchParams(url.search)
+    musicId.value = Number(params.get('id'))
+    // console.log(detailData.value)
   })
 }
 onMounted(async () => {
   isLoading.value = true
   await getDetailPaper()
+  await getDetailMusic(Number(musicId.value))
   isLoading.value = false
 })
 /** ===== 文章详情初始化-end ===== **/
@@ -61,8 +81,22 @@ onMounted(async () => {
               :title="String(detailData?.name)"
               :content="String(detailData?.text)"
           />
-          <div class="w-full h-60 grid grid-cols-2 gap-4">
-            <img :src="detailData?.images" alt="" loading="lazy" class="w-full h-full object-cover" />
+          <div class="w-full h-60 grid grid-cols-2 gap-4 mb-4">
+            <img :src="detailData?.images" alt="" loading="lazy" class="w-60 h-60 object-cover" />
+            <div class="w-full h-full flex flex-col">
+              <div class="w-full h-auto flex flex-col">
+                <div class="w-full h-auto text-xl font-bold">
+                  歌手: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.author }}</span>
+                </div>
+                <div class="w-full h-auto text-xl font-bold">
+                  标题: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.title }}</span>
+                </div>
+              </div>
+              <audio :src="detailData?.mp3_url" controls class="w-full h-full" />
+            </div>
+          </div>
+          <div class="w-full flex justify-center">
+            <div class="w-auto h-auto flex text-gray-500">{{ detailMusic?.lrc }}</div>
           </div>
         </div>
       </el-skeleton>
