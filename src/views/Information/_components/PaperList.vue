@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import {$apis} from "../../../composabels/apis";
+import { useRouter } from "vue-router";
 import PaperItem from "./PaperItem.vue";
 
+
+const router = useRouter()
 /** ===== 文章列表初始化-start ===== **/
 const paperList = ref<any>()
 async function getPaperList() {
@@ -14,6 +17,12 @@ onMounted(async () => {
   await getPaperList()
 })
 /** ===== 文章列表初始化-end ===== **/
+
+/** ===== 文章跳转-start ===== **/
+function jump2paper(index: any) {
+  router.push(`/inforcenter/${index}`)
+}
+/** ===== 文章跳转-end ===== **/
 </script>
 
 <template>
@@ -25,6 +34,7 @@ onMounted(async () => {
           :title="item.title"
           :index="index + 1"
           :description="item.description"
+          @click="jump2paper(index)"
       />
     </el-card>
   </div>

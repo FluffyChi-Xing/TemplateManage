@@ -9,3 +9,8 @@ export function getWeiboHot() {
     const url = `${baseUrl}/WeiBoHot`
     return $request({url})
 }
+
+export function getMoreInfo(index: number) {
+    const url = `${baseUrl}/HotComments?${index}`
+    return $request({url})
+}

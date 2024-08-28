@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
-  title: string,
-  content: string,
+  title?: string,
+  content?: string,
 }>(),{
   title: '标题',
   content: '内容'

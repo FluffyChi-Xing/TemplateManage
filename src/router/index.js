@@ -15,6 +15,7 @@ import BackLinksPage from "@/components/BackLinksPage.vue";
 import DataScreen from '@/views/DataScreen/index.vue'
 import InforPage from '@/views/Information/index.vue'
 import PaperList from "@/views/Information/_components/PaperList.vue";
+import MoreInfo from "@/views/Information/MoreInfo.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -115,7 +116,8 @@ const router = createRouter({
             },
             {
               path: '/inforcenter/:id',
-              name: 'paperItem'
+              name: 'paperItem',
+              component: MoreInfo,
             }
           ]
         }

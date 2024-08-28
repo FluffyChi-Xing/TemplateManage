@@ -14,9 +14,9 @@ const imgUrl = computed(() => {
 </script>
 
 <template>
-  <div class="w-full h-36 mb-4 flex py-4 items-center">
+  <div class="w-full h-36 mb-4 flex py-4 items-center cursor-pointer">
     <div class="w-[120px] h-[120px] flex">
-      <img :src="imgUrl" alt="" class="w-full h-full object-cover">
+      <img :src="imgUrl" alt="" loading="lazy" class="w-full h-full object-cover">
     </div>
     <el-divider direction="vertical" style="height: 100%" />
     <div style="width: calc(100% - 120px)" class="h-full flex flex-col">

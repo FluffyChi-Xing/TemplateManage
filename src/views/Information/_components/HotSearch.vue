@@ -53,7 +53,7 @@ function isBackLinks(item: string) {
         <div class="w-full h-1/2 text-center flex text-[10px] font-bold">
           {{ index + 1 }}
         </div>
-        <div class="w-full h-1/2 flex overflow-hidden whitespace-nowrap text-ellipsis">
+        <div class="w-full h-auto my-auto text-[10px] text-center flex overflow-hidden whitespace-nowrap text-ellipsis">
           {{ item.hot }}
         </div>
       </div>
