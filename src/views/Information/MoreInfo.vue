@@ -86,13 +86,13 @@ onMounted(async () => {
             <div class="w-full h-full flex flex-col">
               <div class="w-full h-auto flex flex-col">
                 <div class="w-full h-auto text-xl font-bold">
-                  歌手: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.author }}</span>
+                  歌手: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.author ? detailMusic?.author : '暂无歌手信息' }}</span>
                 </div>
                 <div class="w-full h-auto text-xl font-bold">
-                  标题: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.title }}</span>
+                  标题: <span class="w-auto h-auto text-gray-500">{{ detailMusic?.title ? detailMusic?.title : '暂无标题' }}</span>
                 </div>
               </div>
-              <audio :src="detailData?.mp3_url" controls class="w-full h-full" />
+              <audio :src="String(detailData?.mp3_url)" controls class="w-full h-full" />
             </div>
           </div>
           <div class="w-full flex justify-center">

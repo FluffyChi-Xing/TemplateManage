@@ -2,7 +2,10 @@
 import { computed, ref } from "vue";
 import SvgIcon from "./SvgIcon.vue";
 import {ElMessage, ElMessageBox} from "element-plus";
+import {useRouter} from "vue-router";
 
+
+const router = useRouter()
 const props = withDefaults(defineProps<{
   avatar: string,
   name: string,
@@ -35,6 +38,7 @@ function handleLogOut() {
       type: 'success',
       message: '退出成功'
     })
+    router.replace('/login')
     loginStatus.value = false
   }).catch(() => {
     ElMessage({

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
-import {useCounterStore} from "../../../stores/counter";
+import {computed, onMounted, ref} from "vue";
+// import {useCounterStore} from "../../../stores/counter";
 import { useDark, useToggle } from '@vueuse/core'
+import {$stores} from "../../../composabels/stores";
 
 
-const page = useCounterStore()
+// const page = useCounterStore()
+const usePageCommon = $stores.usePageCommon.usePageCommon()
 /* ========================= 顶部组件栏数据--start ========================= */
 const defaultButtons = [
   {
@@ -49,10 +51,10 @@ function refresh() {
 }
 // 页面编辑
 function editPage() {
-  if (page.editDrawer) {
-    page.editDrawer = false
+  if (usePageCommon.editDrawer) {
+    usePageCommon.editDrawer = false
   } else {
-    page.editDrawer = true
+    usePageCommon.editDrawer = true
   }
 }
 // 夜间模式

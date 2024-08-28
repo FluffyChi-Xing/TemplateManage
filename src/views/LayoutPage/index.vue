@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import {onMounted, ref, watch} from 'vue'
+import {computed, onMounted, ref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 // import {$enums} from '../../composabels/enums'
 import TopFuncNav from "./_components/TopFuncNav.vue";
-import {useCounterStore} from '../../stores/counter'
+// import {useCounterStore} from '../../stores/counter'
 import TagsComponents from "../../components/TagsComponents.vue";
 import Default from "../../layouts/default.vue";
+import {$stores} from "../../composabels/stores";
 
 //router
 const router = useRouter()
@@ -13,7 +14,9 @@ const router = useRouter()
 const title = ref<string>('中台管理系统')
 //route
 const route = useRoute()
-const page = useCounterStore()
+const pageCommon = $stores.usePageCommon.usePageCommon()
+const drawerState = computed(() => pageCommon.editDrawer)
+// const page = useCounterStore()
 
 /* ========================= 菜单持久化--start ========================= */
 function goHome() {
@@ -268,7 +271,7 @@ watch(() => route.matched, () => {
               size="350"
               title="设置中心"
               style="border-radius: 10px 0 0 10px"
-              v-model="page.editDrawer"
+              v-model="drawerState"
           >
             <el-form
                 inline

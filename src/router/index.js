@@ -16,6 +16,7 @@ import DataScreen from '@/views/DataScreen/index.vue'
 import InforPage from '@/views/Information/index.vue'
 import PaperList from "@/views/Information/_components/PaperList.vue";
 import MoreInfo from "@/views/Information/MoreInfo.vue";
+import LoginPage  from '@/views/LoginPage/index.vue'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -148,6 +149,14 @@ const router = createRouter({
           }
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage,
+      meta: {
+        title: '登录'
+      }
     }
   ]
 })
