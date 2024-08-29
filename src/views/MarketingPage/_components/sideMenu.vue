@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, ref, watch} from 'vue'
-import {Operation, Ticket, Warning} from "@element-plus/icons-vue";
+import {Operation, Position, Ticket, Warning} from "@element-plus/icons-vue";
 import {useRouter} from "vue-router";
 import {ElMessage} from "element-plus";
 import { useRoute } from "vue-router";
@@ -18,7 +18,8 @@ const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
 const defaultActive = ref<string>('1-1')
 
 // 换页函数
-function forbbiden() {
+function forbbiden(item: string) {
+  router.push(item)
   ElMessage({
     message: '暂未开放',
     type: 'warning',
@@ -32,11 +33,15 @@ function handleSelect(index: string) {
       break;
     case '1-2':
       defaultActive.value = '1-1'
-      forbbiden()
+      forbbiden('/marketcenter')
       break;
     case '2-1':
       defaultActive.value = '2-1'
       router.push('/marketcenter/homefitment')
+      break;
+    case '2-2':
+      defaultActive.value = '2-1'
+      forbbiden('/marketcenter/homefitment')
       break;
   }
 }
@@ -95,18 +100,22 @@ watch(() => route.fullPath, () => {
           <span>主题风格</span>
         </el-menu-item>
       </el-sub-menu>
-      <el-sub-menu index="3">
+      <el-menu-item index="3">
+        <el-icon><Position /></el-icon>
+        <span>签到配置</span>
+      </el-menu-item>
+      <el-sub-menu index="4">
         <template #title>
           <el-icon><Warning /></el-icon>
           <span>积分管理</span>
         </template>
-        <el-menu-item index="3-1">
+        <el-menu-item index="4-1">
           <span>积分统计</span>
         </el-menu-item>
-        <el-menu-item index="3-2">
+        <el-menu-item index="4-2">
           <span>积分商品</span>
         </el-menu-item>
-        <el-menu-item index="3-3">
+        <el-menu-item index="4-3">
           <span>积分订单</span>
         </el-menu-item>
       </el-sub-menu>

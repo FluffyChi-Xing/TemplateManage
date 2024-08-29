@@ -136,7 +136,7 @@ const options = ref<TablePageTypes.TableOptions[]>([
                 :rows="10"
                 animated
             >
-              <iframe :src="url" class="w-full h-full" frameborder="0" />
+              <iframe :src="url" class="w-full h-full" />
             </el-skeleton>
           </div>
           <div class="col-span-3 w-full h-auto flex flex-col">

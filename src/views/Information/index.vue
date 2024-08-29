@@ -46,7 +46,33 @@ const checkInTitle = computed(() => {
 })
 const btnInfo = ref<string>('签到')
 const disabled = ref<boolean>(false)
-function isChecked() {
+function submitChecked() {
+  let checked = localStorage.getItem('isChecked')
+  if (checked) {
+    console.log('checked', checked)
+    let day = new Date().getDate()
+    if (day.toString() !== checked.toString()) {
+      btnInfo.value = '已签到'
+      disabled.value = true
+      localStorage.setItem('isChecked', day.toString())
+      ElMessage({
+        type: "success",
+        message: "签到成功"
+      })
+    }
+  } else {
+    let today = new Date().getDate()
+    localStorage.setItem('isChecked', today.toString())
+    btnInfo.value = '已签到'
+    disabled.value = true
+    ElMessage({
+      type: "success",
+      message: "签到成功"
+    })
+  }
+}
+
+function checkCheckIn() {
   let checked = localStorage.getItem('isChecked')
   if (checked) {
     let day = new Date().getDate()
@@ -54,18 +80,12 @@ function isChecked() {
       btnInfo.value = '已签到'
       disabled.value = true
     }
-  } else {
-    // console.log('签到成功')
-    let today = new Date().getDate()
-    localStorage.setItem('isChecked', today.toString())
-    btnInfo.value = '已签到'
-    disabled.value = true
   }
 }
 
 // 页面挂载时判断是否签到
 onMounted(() => {
-  isChecked()
+  checkCheckIn()
 })
 /** ===== 签到模块-end ===== **/
 
@@ -89,7 +109,7 @@ const adsList = ref<string[]>([
         />
         <CheckIn
             :title="checkInTitle"
-            @check-in="isChecked"
+            @check-in="submitChecked"
             :btn-info="btnInfo"
             :disabled="disabled"
             class="mb-4"
