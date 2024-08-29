@@ -57,6 +57,9 @@ withDefaults(defineProps<{
           :width="item.width ? item.width : '100%'"
           :show-overflow-tooltip="item.overflow"
       >
+        <template v-if="item.html" #default="{ row }">
+          <component :is="item.html ? item.html : 'div'" />
+        </template>
         <template v-if="item.children">
           <el-table-column
               v-for="(child, childIndex) in item.children"
@@ -84,14 +87,16 @@ withDefaults(defineProps<{
           label="操作"
           width="100"
       >
-        <el-button
-            v-for="item in options"
-            :size="item.size"
-            :type="item.type"
-            @click="item.option"
-        >
-          {{ item.text }}
-        </el-button>
+        <template #default="{ row }">
+          <el-button
+              v-for="item in options"
+              :size="item.size"
+              :type="item.type"
+              @click="item.option(row)"
+          >
+            {{ item.text }}
+          </el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>

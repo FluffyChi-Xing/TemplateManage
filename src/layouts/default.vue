@@ -20,7 +20,7 @@ const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
 //change page
 const defaultActive = ref<string>('1')
 function changeRouter(e: string, es: string[]) {
-  console.log(es)
+  // console.log(es)
   switch (e) {
     case '1':
       router.push('/')

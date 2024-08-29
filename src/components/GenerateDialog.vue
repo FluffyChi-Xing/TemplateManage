@@ -3,9 +3,9 @@ import {computed} from "vue";
 
 const props = withDefaults(defineProps<{
   title: string,
-  content: string,
+  content?: string,
   size?: number,
-  visible: boolean,
+  visible?: boolean,
   confirmFunc: () => void,
   isDefault?: boolean,
   showClose?: boolean
@@ -44,11 +44,12 @@ function cancelBtn() {
         <span class="text-black text-xl">{{ content }}</span>
       </div>
       <div
-          v-else
+          v-if="props.content"
           v-html="content"
       />
+      <slot />
       <template #footer>
-        <el-button class="main_primary_btns_date">
+        <el-button @click="cancelBtn" class="main_primary_btns_date">
           取消
         </el-button>
         <el-button class="main_primary_btns ml-2">

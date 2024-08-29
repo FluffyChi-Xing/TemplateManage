@@ -15,12 +15,13 @@ declare namespace TablePageTypes {
         width: number | null;
         overflow?: boolean | null;
         children?: TableTemplate[] | null;
+        html?: string | null;
     }
     interface TableOptions {
         text: string;
         size: 'large' | 'default' | 'small';
         type: 'primary' | 'danger' | 'text' | 'info' | 'success' | 'warning';
-        option: (e: number) => void;
+        option: (e: never) => void;
     }
     interface Tree {
         id: string
