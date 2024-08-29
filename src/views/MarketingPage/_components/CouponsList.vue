@@ -2,6 +2,7 @@
 import {computed, ref} from 'vue'
 import TableTemplate from "../../../components/TableTemplate.vue";
 import GenerateDialog from "../../../components/GenerateDialog.vue";
+import {ElMessage} from "element-plus";
 
 /** ========== 页头表单初始化-start ========== **/
 const couponName = ref<string>('') // 优惠券名称
@@ -82,9 +83,9 @@ const fakeData = ref<any[]>([
     couponName: '优惠券2',
     couponType: '折扣券',
     number: 100,
-    couponValue: 100,
+    couponValue: 50,
     validity: '2021-10-01至2021-10-31',
-    isEffective: true
+    isEffective: false
   }
 ])
 const options = ref<TablePageTypes.TableOptions[]>([
@@ -96,6 +97,10 @@ const options = ref<TablePageTypes.TableOptions[]>([
       dialogVisible.value = true
       editName.value = row.couponName
       editType.value = row.couponType
+      editNumber.value = row.number
+      editValue.value = row.couponValue
+      editEffective.value = row.isEffective
+      sign.value = row.id
     }
   }
 ])
@@ -118,16 +123,18 @@ const typeOptions = ref<selectTypes[]>([
 /** ========== 表单初始化-end =========== **/
 
 /** ========== 表单编辑-start ========== **/
+const sign = ref<number>(0)
 const editName = ref<string>('')
 const editType = ref<string>('')
 const editNumber = ref<number>(0)
 const editValue = ref<number>(0)
-const editValidity = ref<string>('')
+// const editValidity = ref<string>('')
 const namePlaceholder = ref<string>('请输入编辑名称')
 const editEffective = ref<boolean>(true)
 const dialogVisible = ref<boolean>(false)
-function editTable() {
-  console.log('编辑')
+function submitEdit() {
+  console.log('submitEdit')
+  editTable()
 }
 function addItem() {
   fakeData.value.push({
@@ -139,8 +146,44 @@ function addItem() {
     validity: '2021-10-01至2021-10-31',
     isEffective: true
   })
+  totalNumber.value = fakeData.value.length
+}
+
+function editTable() {
+  fakeData.value.find((item: any) => {
+    if (item.id === sign.value) {
+      item.couponName = editName.value
+      item.couponType = editType.value
+      item.number = editNumber.value
+      item.couponValue = editValue.value
+      item.isEffective = editEffective.value
+      ElMessage({
+        type: "success",
+        message: "编辑成功"
+      })
+      dialogVisible.value = false
+    } else {
+      ElMessage({
+        type: "warning",
+        message: "编辑失败"
+      })
+    }
+  })
 }
 /** ========== 表单编辑-end =========== **/
+
+/** ========== 表头筛选-start ========== **/
+function searchTable() {
+  if (couponName.value) {
+    fakeData.value = fakeData.value.filter((item: any) => item.couponName.includes(couponName.value))
+  } else {
+    ElMessage({
+      type: 'warning',
+      message: '请输入优惠券名称'
+    })
+  }
+}
+/** ========== 表头筛选-end =========== **/
 </script>
 
 <template>
@@ -159,8 +202,15 @@ function addItem() {
                     v-model="couponName"
                     placeholder="请输入优惠券名称"
                     clearable
+                    @keydown.enter="searchTable"
                 />
-                <el-button icon="Search" class="main_primary_btn ml-2">搜索</el-button>
+                <el-button
+                    icon="Search"
+                    class="main_primary_btn ml-2"
+                    @click="searchTable"
+                >
+                  搜索
+                </el-button>
               </div>
             </el-form-item>
             <el-form-item label="优惠券类型">
@@ -168,11 +218,13 @@ function addItem() {
                   v-model="couponType"
                   placeholder="请输入优惠券类型"
                   clearable
+                  disabled
               />
             </el-form-item>
             <el-form-item label="是否有效">
               <el-radio-group
                   v-model="isEffective"
+                  disabled
               >
                 <el-radio value="1">是</el-radio>
                 <el-radio value="2">否</el-radio>
@@ -195,10 +247,11 @@ function addItem() {
             fixed="right"
         />
         <div class="w-full h-12 px-4 justify-between mt-auto flex">
-          <span>共 {{ pageSize }} 条</span>
+          <span>共 {{ totalNumber }} 条</span>
           <el-pagination
               layout="prev, pager, next"
               :total="totalNumber"
+              :page-size="pageSize"
               background
           />
         </div>
@@ -209,7 +262,7 @@ function addItem() {
         v-model:visible="dialogVisible"
         :is-default="false"
         title="优惠券编辑"
-        :confirm-func="editTable"
+        :confirm-func="submitEdit"
     >
       <div class="w-full h-auto p-4">
         <el-form label-width="auto">
@@ -232,6 +285,22 @@ function addItem() {
                   :value="item.value"
               />
             </el-select>
+          </el-form-item>
+          <el-form-item label="编辑数量">
+            <el-input-number
+                v-model="editNumber"
+            />
+          </el-form-item>
+          <el-form-item label="编辑价值">
+            <el-input-number
+                v-model="editValue"
+            />
+          </el-form-item>
+          <el-form-item label="是否启用">
+            <el-switch
+                v-model="editEffective"
+                style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+            />
           </el-form-item>
         </el-form>
       </div>

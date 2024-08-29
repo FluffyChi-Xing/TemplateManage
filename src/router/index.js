@@ -19,6 +19,7 @@ import MoreInfo from "@/views/Information/MoreInfo.vue";
 import LoginPage  from '@/views/LoginPage/index.vue'
 import MarketingCenter from '@/views/MarketingPage/index.vue'
 import CouponsList from "@/views/MarketingPage/_components/CouponsList.vue";
+import HomeFitment from "@/views/MarketingPage/_components/HomeFitment.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -138,6 +139,14 @@ const router = createRouter({
               component: CouponsList,
               meta: {
                 title: '优惠券列表'
+              }
+            },
+            {
+              path: '/marketcenter/homeFitment',
+              name: 'homeFitment',
+              component: HomeFitment,
+              meta: {
+                title: '首页装修'
               }
             }
           ]

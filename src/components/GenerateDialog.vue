@@ -52,7 +52,7 @@ function cancelBtn() {
         <el-button @click="cancelBtn" class="main_primary_btns_date">
           取消
         </el-button>
-        <el-button class="main_primary_btns ml-2">
+        <el-button @click="confirmFunc" class="main_primary_btns ml-2">
           确定
         </el-button>
       </template>

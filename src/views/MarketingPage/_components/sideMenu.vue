@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {Ticket, Warning} from "@element-plus/icons-vue";
+import {Operation, Ticket, Warning} from "@element-plus/icons-vue";
+import {useRouter} from "vue-router";
+import {ElMessage} from "element-plus";
+
+const router = useRouter()
 
 const defaultSetting = {
   text: '页面设置',
@@ -8,6 +12,26 @@ const defaultSetting = {
 }
 const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
 const defaultActive = ref<string>('1-1')
+
+// 换页函数
+function forbbiden() {
+  ElMessage({
+    message: '暂未开放',
+    type: 'warning',
+  })
+}
+function handleSelect(index: string) {
+  switch (index) {
+    case '1-1':
+      defaultActive.value = '1-1'
+        router.push('/marketcenter')
+      break;
+    case '1-2':
+      defaultActive.value = '1-1'
+      forbbiden()
+      break;
+  }
+}
 </script>
 
 <template>
@@ -18,6 +42,7 @@ const defaultActive = ref<string>('1-1')
         :default-active="defaultActive"
         text-color="#A9A9A9FF"
         style="height: 100%;border-right: 0;"
+        @select="handleSelect"
     >
       <el-sub-menu index="1">
         <template #title>
@@ -33,16 +58,28 @@ const defaultActive = ref<string>('1-1')
       </el-sub-menu>
       <el-sub-menu index="2">
         <template #title>
+          <el-icon><Operation /></el-icon>
+          <span>装修</span>
+        </template>
+        <el-menu-item index="2-1">
+          <span>首页装修</span>
+        </el-menu-item>
+        <el-menu-item index="2-2">
+          <span>主题风格</span>
+        </el-menu-item>
+      </el-sub-menu>
+      <el-sub-menu index="3">
+        <template #title>
           <el-icon><Warning /></el-icon>
           <span>积分管理</span>
         </template>
-        <el-menu-item index="2-1">
+        <el-menu-item index="3-1">
           <span>积分统计</span>
         </el-menu-item>
-        <el-menu-item index="2-2">
+        <el-menu-item index="3-2">
           <span>积分商品</span>
         </el-menu-item>
-        <el-menu-item index="2-3">
+        <el-menu-item index="3-3">
           <span>积分订单</span>
         </el-menu-item>
       </el-sub-menu>
