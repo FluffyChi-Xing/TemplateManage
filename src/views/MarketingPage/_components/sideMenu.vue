@@ -43,6 +43,10 @@ function handleSelect(index: string) {
       defaultActive.value = '2-1'
       forbbiden('/marketcenter/homefitment')
       break;
+    case '3':
+      defaultActive.value = '3'
+      router.push('/marketcenter/checkin')
+      break;
   }
 }
 // 高亮持久化
@@ -53,6 +57,9 @@ function highlightMenu() {
       break;
     case '/marketcenter/homefitment':
       defaultActive.value = '2-1'
+      break;
+    case '/marketcenter/checkin':
+      defaultActive.value = '3'
       break;
   }
 }

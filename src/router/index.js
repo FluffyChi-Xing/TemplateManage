@@ -20,6 +20,7 @@ import LoginPage  from '@/views/LoginPage/index.vue'
 import MarketingCenter from '@/views/MarketingPage/index.vue'
 import CouponsList from "@/views/MarketingPage/_components/CouponsList.vue";
 import HomeFitment from "@/views/MarketingPage/_components/HomeFitment.vue";
+import CheckInPage from "@/views/MarketingPage/_components/CheckInPage.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -147,6 +148,14 @@ const router = createRouter({
               component: HomeFitment,
               meta: {
                 title: '首页装修'
+              }
+            },
+            {
+              path: '/marketcenter/checkIn',
+              name: 'checkIn',
+              component: CheckInPage,
+              meta: {
+                title: '签到配置'
               }
             }
           ]

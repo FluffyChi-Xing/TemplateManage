@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 import SvgIcon from "./SvgIcon.vue";
 import {ElMessage, ElMessageBox} from "element-plus";
 import {useRouter} from "vue-router";
+import GenerateDialog from "./GenerateDialog.vue";
 
 
 const router = useRouter()
@@ -47,6 +48,31 @@ function handleLogOut() {
     })
   })
 }
+
+/** =====  用户下线-start  ===== **/
+const dialogVisible = ref<boolean>(false)
+const isExit = ref<string>('1')
+function handleExit() {
+  if (isExit.value === '1') {
+    loginStatus.value = false
+    dialogVisible.value = false
+    ElMessage({
+      type: 'success',
+      message: '用户已下线'
+    })
+  } else {
+    loginStatus.value = true
+    dialogVisible.value = false
+    ElMessage({
+      type: 'info',
+      message: '取消'
+    })
+  }
+}
+function checkExit() {
+  dialogVisible.value = true
+}
+/** =====  用户下线-end  ===== **/
 </script>
 
 <template>
@@ -68,6 +94,8 @@ function handleLogOut() {
         >
           <SvgIcon
               :icon="loginStatus ? 'dengluzhuangtai-zaixian' : 'dengluzhuangtai-lixian'"
+              class="cursor-pointer"
+              @click="checkExit"
           />
         </el-tooltip>
       </div>
@@ -80,6 +108,18 @@ function handleLogOut() {
         />
       </el-icon>
     </div>
+    <GenerateDialog
+        v-model:visible="dialogVisible"
+        title="用户状态"
+        :confirm-func="handleExit"
+    >
+      <el-form-item label="是否离线">
+        <el-radio-group v-model="isExit">
+          <el-radio value="1">下线</el-radio>
+          <el-radio value="0">上线</el-radio>
+        </el-radio-group>
+      </el-form-item>
+    </GenerateDialog>
   </div>
 </template>
 

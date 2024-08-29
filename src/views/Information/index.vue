@@ -7,6 +7,7 @@ import {ElMessage} from "element-plus";
 import Search from "./_components/Search.vue";
 import CheckIn from "./_components/CheckIn.vue";
 import ADs from "./_components/ADs.vue";
+import {$stores} from "../../composabels/stores";
 /** ===== 贴吧热搜初始化-start ===== **/
 const tiebaSearch = ref<any>()
 async function getTiebaList() {
@@ -46,10 +47,13 @@ const checkInTitle = computed(() => {
 })
 const btnInfo = ref<string>('签到')
 const disabled = ref<boolean>(false)
+const pageStore = $stores.usePageCommon.usePageCommon()
+const showCheck = computed(() => pageStore.showCheckIn)
 function submitChecked() {
   let checked = localStorage.getItem('isChecked')
   if (checked) {
-    console.log('checked', checked)
+    // console.log('checked', checked)
+    // 每日签到
     let day = new Date().getDate()
     if (day.toString() !== checked.toString()) {
       btnInfo.value = '已签到'
@@ -61,6 +65,7 @@ function submitChecked() {
       })
     }
   } else {
+    // 首次签到
     let today = new Date().getDate()
     localStorage.setItem('isChecked', today.toString())
     btnInfo.value = '已签到'
@@ -108,6 +113,7 @@ const adsList = ref<string[]>([
             class="mb-4"
         />
         <CheckIn
+            v-if="showCheck"
             :title="checkInTitle"
             @check-in="submitChecked"
             :btn-info="btnInfo"
