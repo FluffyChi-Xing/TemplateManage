@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import {Operation, Ticket, Warning} from "@element-plus/icons-vue";
 import {useRouter} from "vue-router";
 import {ElMessage} from "element-plus";
+import { useRoute } from "vue-router";
 
 const router = useRouter()
+const route = useRoute()
 
+
+/** =====  菜单设置-start  ===== **/
 const defaultSetting = {
   text: '页面设置',
   color: '',
@@ -24,14 +28,37 @@ function handleSelect(index: string) {
   switch (index) {
     case '1-1':
       defaultActive.value = '1-1'
-        router.push('/marketcenter')
+      router.push('/marketcenter')
       break;
     case '1-2':
       defaultActive.value = '1-1'
       forbbiden()
       break;
+    case '2-1':
+      defaultActive.value = '2-1'
+      router.push('/marketcenter/homefitment')
+      break;
   }
 }
+// 高亮持久化
+function highlightMenu() {
+  switch (route.fullPath) {
+    case '/marketcenter':
+      defaultActive.value = '1-1'
+      break;
+    case '/marketcenter/homefitment':
+      defaultActive.value = '2-1'
+      break;
+  }
+}
+
+onMounted(() => {
+  highlightMenu()
+})
+watch(() => route.fullPath, () => {
+  highlightMenu()
+})
+/** =====  菜单设置-end  ===== **/
 </script>
 
 <template>

@@ -58,7 +58,7 @@ withDefaults(defineProps<{
           :show-overflow-tooltip="item.overflow"
       >
         <template v-if="item.html" #default="{ row }">
-          <component :is="item.html ? item.html : 'div'" />
+          <div v-html="item.html" />
         </template>
         <template v-if="item.children">
           <el-table-column
@@ -85,17 +85,19 @@ withDefaults(defineProps<{
           v-if="options?.length"
           :fixed="$enums.String2Fixed(fixed ? fixed : 'right')"
           label="操作"
-          width="100"
+          width="140"
       >
         <template #default="{ row }">
-          <el-button
-              v-for="item in options"
-              :size="item.size"
-              :type="item.type"
-              @click="item.option(row)"
-          >
-            {{ item.text }}
-          </el-button>
+          <div class="w-full h-auto flex justify-between">
+            <el-button
+                v-for="item in options"
+                :size="item.size"
+                :type="item.type"
+                @click="item.option(row)"
+            >
+              {{ item.text }}
+            </el-button>
+          </div>
         </template>
       </el-table-column>
     </el-table>
