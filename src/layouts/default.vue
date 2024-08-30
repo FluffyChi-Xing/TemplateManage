@@ -66,6 +66,11 @@ function changeRouter(e: string, es: string[]) {
   }
 }
 function persistenceRoute(e: string) {
+  // 处理一二级菜单不协调的问题
+  if (e.includes('/marketcenter')) {
+    defaultActive.value = '7'
+    return
+  }
   switch (e) {
     case '/':
       defaultActive.value = '1'

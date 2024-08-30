@@ -1,7 +1,6 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import NProgress from 'nprogress'
 import DashBoard from "@/views/DashBoard/index.vue";
-import LayoutPage from "@/views/LayoutPage/index.vue";
 import LayoutComponent from "@/views/LayoutPage/_components/LayoutComponent.vue";
 import DisplayPage from "@/views/DisplayPage/index.vue";
 import NoticeCenter from "@/views/LayoutPage/_components/NoticeCenter.vue";
@@ -21,7 +20,10 @@ import MarketingCenter from '@/views/MarketingPage/index.vue'
 import CouponsList from "@/views/MarketingPage/_components/CouponsList.vue";
 import HomeFitment from "@/views/MarketingPage/_components/HomeFitment.vue";
 import CheckInPage from "@/views/MarketingPage/_components/CheckInPage.vue";
-import SecondLayout from "@/layouts/SecondLayout.vue";
+import WeappManage from "@/views/MarketingPage/weapp/WeappManage.vue";
+import WeappHome from "@/views/MarketingPage/weapp/_components/WeappHome.vue";
+import WeappId from "@/views/MarketingPage/weapp/[id]/WeappId.vue";
+import WeappAdd from "@/views/MarketingPage/weapp/_components/WeappAdd.vue";
 
 /** ===== 页面布局切换-start ===== **/
 const layoutMode = localStorage.getItem('layoutMode')
@@ -172,6 +174,37 @@ const router = createRouter({
               component: CheckInPage,
               meta: {
                 title: '签到配置'
+              }
+            },
+            {
+              path: '/marketcenter/weapp',
+              name: 'weapp',
+              component: WeappManage,
+              children: [
+                {
+                  path: '',
+                  name: 'weapphome',
+                  component: WeappHome,
+                },
+                {
+                  path: '/marketcenter/weapp/:id',
+                  name: 'weappItem',
+                  component: WeappId,
+                  meta: {
+                    title: '公众号编辑'
+                  }
+                },
+                {
+                  path: '/marketcenter/weapp/add',
+                  name: 'weappAdd',
+                  component: WeappAdd,
+                  meta: {
+                    title: '新增文章'
+                  }
+                }
+              ],
+              meta: {
+                title: '公众号管理'
               }
             }
           ]

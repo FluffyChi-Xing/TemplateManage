@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, ref, watch} from 'vue'
-import {Operation, Position, Ticket, Warning} from "@element-plus/icons-vue";
+import {Document, Operation, Position, Ticket, Warning} from "@element-plus/icons-vue";
 import {useRouter} from "vue-router";
 import {ElMessage} from "element-plus";
 import { useRoute } from "vue-router";
@@ -47,6 +47,10 @@ function handleSelect(index: string) {
       defaultActive.value = '3'
       router.push('/marketcenter/checkin')
       break;
+    case '5':
+      defaultActive.value = '5'
+      router.push('/marketcenter/weapp')
+      break;
   }
 }
 // 高亮持久化
@@ -60,6 +64,9 @@ function highlightMenu() {
       break;
     case '/marketcenter/checkin':
       defaultActive.value = '3'
+      break;
+    case '/marketcenter/weapp':
+      defaultActive.value = '5'
       break;
   }
 }
@@ -127,6 +134,10 @@ watch(() => route.fullPath, () => {
           <span>积分订单</span>
         </el-menu-item>
       </el-sub-menu>
+      <el-menu-item index="5">
+        <el-icon><Document /></el-icon>
+        <span>公众号管理</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
