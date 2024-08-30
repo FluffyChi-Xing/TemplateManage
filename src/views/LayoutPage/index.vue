@@ -2,17 +2,18 @@
 import {computed, onMounted, ref, watch} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 // import {$enums} from '../../composabels/enums'
-import TopFuncNav from "./_components/TopFuncNav.vue";
+// import TopFuncNav from "./_components/TopFuncNav.vue";
 // import {useCounterStore} from '../../stores/counter'
 import TagsComponents from "../../components/TagsComponents.vue";
 import Default from "../../layouts/default.vue";
 import {$stores} from "../../composabels/stores";
 import ChooseLayout from "./_components/ChooseLayout.vue";
+import TheTop from "../../layouts/TheTop.vue";
 
 //router
 const router = useRouter()
 //title
-const title = ref<string>('中台管理系统')
+// const title = ref<string>('中台管理系统')
 //route
 const route = useRoute()
 const pageCommon = $stores.usePageCommon.usePageCommon()
@@ -20,9 +21,9 @@ const drawerState = computed(() => pageCommon.editDrawer)
 // const page = useCounterStore()
 
 /* ========================= 菜单持久化--start ========================= */
-function goHome() {
-  router.push('/')
-}
+// function goHome() {
+//   router.push('/')
+// }
 //change page
 // const defaultActive = ref<string>('1')
 // function changeRouter(e: string, es: string[]) {
@@ -169,7 +170,13 @@ watch(() => route.matched, () => {
   getRouteList()
 })
 /** ========================= 布局切换-start ========================= */
-const layoutValue = ref<string>('1')
+const layoutValue = ref<string>('mode1')
+function handleChange(index: string) {
+  // console.log(index)
+  localStorage.setItem('layoutMode', index)
+  // 刷新页面
+  location.reload()
+}
 /** ========================= 布局切换-end ========================= */
 </script>
 
@@ -184,26 +191,27 @@ const layoutValue = ref<string>('1')
           class="shadow-md"
       >
         <!-- header -->
-        <div
-            class="w-full h-full relative flex"
-        >
-          <!-- title -->
-          <div
-              class="w-[180px] h-full relative flex justify-center cursor-pointer text-white text-2xl font-bold"
-              @click="goHome"
-          >
-            <!-- title -->
-            <span
-                class="w-auto h-auto relative block my-auto"
-            >
-              {{ title }}
-            </span>
-          </div>
-          <!-- function banner -->
-          <div class="w-auto h-full relative flex ml-auto">
-            <TopFuncNav />
-          </div>
-        </div>
+<!--        <div-->
+<!--            class="w-full h-full relative flex"-->
+<!--        >-->
+<!--          &lt;!&ndash; title &ndash;&gt;-->
+<!--          <div-->
+<!--              class="w-[180px] h-full relative flex justify-center cursor-pointer text-white text-2xl font-bold"-->
+<!--              @click="goHome"-->
+<!--          >-->
+<!--            &lt;!&ndash; title &ndash;&gt;-->
+<!--            <span-->
+<!--                class="w-auto h-auto relative block my-auto"-->
+<!--            >-->
+<!--              {{ title }}-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; function banner &ndash;&gt;-->
+<!--          <div class="w-auto h-full relative flex ml-auto">-->
+<!--            <TopFuncNav />-->
+<!--          </div>-->
+<!--        </div>-->
+        <TheTop />
       </el-header>
       <el-container>
         <el-aside width="200px">
@@ -283,6 +291,7 @@ const layoutValue = ref<string>('1')
             >
               <ChooseLayout
                   :radio-value="layoutValue"
+                  @change:radio-value="handleChange"
               />
               <el-form-item
                   label="用户名"

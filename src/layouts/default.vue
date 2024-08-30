@@ -185,7 +185,9 @@ const username = ref<string>('张三')
 </script>
 
 <template>
-  <div class="flex-col w-full h-full">
+  <div
+      :class="mode === 'vertical' ? 'flex-col w-full h-full' : 'h-20 w-full'"
+  >
     <el-menu
         :active-text-color="pageSetting.color"
         background-color="#001529"
@@ -197,7 +199,7 @@ const username = ref<string>('张三')
         @select="changeRouter"
     >
       <div
-          class="w-full h-28 pb-4 flex justify-end menu-head-bg flex-col"
+          :class="mode === 'vertical' ? 'w-[200px] menu-head-bg h-28 flex pb-2 flex-col justify-end' : 'w-60 h-full menu-head-bg flex flex-col justify-center'"
       >
         <UserAvatar
             :name="username"

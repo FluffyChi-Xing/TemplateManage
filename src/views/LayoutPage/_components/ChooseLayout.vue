@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 // const props = withDefaults(defineProps<{
 //   radioValue: ref<string>
 // }>(), {
 //   radioValue: '1'
 // })
-const radioValue = ref('1')
+const radioValue = ref('mode1')
+const emits = defineEmits(['change:radioValue'])
+function handleChange() {
+  emits('change:radioValue', radioValue.value)
+}
+function checkState() {
+  let mode = localStorage.getItem('layoutMode')
+  if (mode) {
+    radioValue.value = mode
+  }
+}
+onMounted(() => {
+  checkState()
+})
 </script>
 
 <template>
@@ -15,10 +28,11 @@ const radioValue = ref('1')
       <el-radio-group
           v-model="radioValue"
           class="w-full"
+          @change="handleChange"
       >
         <div class="w-full h-auto grid grid-cols-2 gap-3">
           <el-radio-button
-              value="1"
+              value="mode1"
           >
             <template #default>
               <div class="w-full h-[100px] flex flex-col">
@@ -31,7 +45,7 @@ const radioValue = ref('1')
             </template>
           </el-radio-button>
           <el-radio-button
-              value="2"
+              value="mode2"
               class="border-none"
           >
             <template #default>

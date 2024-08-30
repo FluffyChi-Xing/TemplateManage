@@ -21,13 +21,29 @@ import MarketingCenter from '@/views/MarketingPage/index.vue'
 import CouponsList from "@/views/MarketingPage/_components/CouponsList.vue";
 import HomeFitment from "@/views/MarketingPage/_components/HomeFitment.vue";
 import CheckInPage from "@/views/MarketingPage/_components/CheckInPage.vue";
+import SecondLayout from "@/layouts/SecondLayout.vue";
+
+/** ===== 页面布局切换-start ===== **/
+const layoutMode = localStorage.getItem('layoutMode')
+/** ===== 页面布局切换-end ===== **/
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
       path: '/',
       name: 'LayoutPage',
-      component: LayoutPage,
+      component: () => {
+        if (layoutMode) {
+          if (layoutMode === 'mode2') {
+            return SecondLayout
+          } else {
+            return LayoutPage
+          }
+        } else {
+          return LayoutPage
+        }
+      },
       meta: {
         title: '中台模板系统'
       },
@@ -195,7 +211,7 @@ const router = createRouter({
       meta: {
         title: '登录'
       }
-    }
+    },
   ]
 })
 //router before guards
