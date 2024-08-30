@@ -36,12 +36,12 @@ const router = createRouter({
       component: () => {
         if (layoutMode) {
           if (layoutMode === 'mode2') {
-            return SecondLayout
+            return import('@/layouts/SecondLayout.vue')
           } else {
-            return LayoutPage
+            return import('@/views/LayoutPage/index.vue')
           }
         } else {
-          return LayoutPage
+          return import('@/views/LayoutPage/index.vue')
         }
       },
       meta: {
