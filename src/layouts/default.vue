@@ -15,6 +15,11 @@ const defaultSetting = {
   color: '',
 }
 const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
+withDefaults(defineProps<{
+  mode?: string
+}>(), {
+  mode: 'vertical'
+})
 
 /* ========================= 菜单持久化--start ========================= */
 //change page
@@ -188,6 +193,7 @@ const username = ref<string>('张三')
         :default-active="defaultActive"
         text-color="#A9A9A9FF"
         style="height: 100%;"
+        :mode="mode"
         @select="changeRouter"
     >
       <div

@@ -7,6 +7,7 @@ import TopFuncNav from "./_components/TopFuncNav.vue";
 import TagsComponents from "../../components/TagsComponents.vue";
 import Default from "../../layouts/default.vue";
 import {$stores} from "../../composabels/stores";
+import ChooseLayout from "./_components/ChooseLayout.vue";
 
 //router
 const router = useRouter()
@@ -167,6 +168,9 @@ onMounted(() => {
 watch(() => route.matched, () => {
   getRouteList()
 })
+/** ========================= 布局切换-start ========================= */
+const layoutValue = ref<string>('1')
+/** ========================= 布局切换-end ========================= */
 </script>
 
 <template>
@@ -277,6 +281,9 @@ watch(() => route.matched, () => {
                 inline
                 label-width="auto"
             >
+              <ChooseLayout
+                  :radio-value="layoutValue"
+              />
               <el-form-item
                   label="用户名"
               >
@@ -287,6 +294,7 @@ watch(() => route.matched, () => {
                     prefix-icon="User"
                 />
               </el-form-item>
+              <el-divider direction="horizontal" />
               <el-form-item
                   label="设置主题色"
               >
