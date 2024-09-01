@@ -53,6 +53,10 @@ async function getItemList() {
       })
     })
     // console.log('itemList', itemList.value)
+  }).catch((err: any) => {
+    itemList.value = []
+    isLoading.value = false
+    console.log('获取文章列表失败', err)
   })
 }
 onMounted(async () => {
@@ -132,10 +136,14 @@ async function refreshItemList() {
             @edit:id="handleEdit"
             @delete:id="handleDelete"
         />
-        <NoData
+        <el-card
             v-else
-            title="暂无数据"
-        />
+            class="global-card w-full h-auto flex flex-col p-4"
+        >
+          <NoData
+              title="暂无数据"
+          />
+        </el-card>
       </el-skeleton>
     </div>
   </div>

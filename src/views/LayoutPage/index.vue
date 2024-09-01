@@ -178,6 +178,14 @@ function handleChange(index: string) {
   location.reload()
 }
 /** ========================= 布局切换-end ========================= */
+
+/** ===== 开启标签页-start ===== **/
+const showTags = ref<boolean>(true)
+function handleTags() {
+  showTags.value = !showTags.value
+  pageCommon.isShowTags = showTags.value
+}
+/** ===== 开启标签页-end ===== **/
 </script>
 
 <template>
@@ -331,6 +339,14 @@ function handleChange(index: string) {
                     </div>
                   </el-option>
                 </el-select>
+              </el-form-item>
+              <el-divider direction="horizontal" />
+              <el-form-item label="是否开启标签页">
+                <el-switch
+                    v-model="showTags"
+                    style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+                    @change="handleTags"
+                />
               </el-form-item>
             </el-form>
           </el-drawer>
