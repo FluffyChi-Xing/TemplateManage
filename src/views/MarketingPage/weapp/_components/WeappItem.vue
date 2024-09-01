@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import GenerateDialog from "../../../../components/GenerateDialog.vue";
+import {computed, ref} from 'vue'
+import {ElMessage} from "element-plus";
+
 const props = withDefaults(defineProps<{
   id?: number,
   imgUrl?: string,
@@ -12,10 +16,24 @@ const props = withDefaults(defineProps<{
   date: '2021-09-01',
   id: -1
 })
-const emits = defineEmits(['edit:id'])
+const emits = defineEmits(['edit:id', 'delete:id'])
 function handleEdit() {
   emits('edit:id', props.id)
 }
+/** ===== 删除文章-start ===== **/
+const dialogVisible = ref<boolean>(false)
+function handleDelete() {
+  dialogVisible.value = true
+}
+function submitDelete() {
+  dialogVisible.value = false
+  emits('delete:id', props.id)
+  ElMessage({
+    type: "success",
+    message: "删除成功"
+  })
+}
+/** ===== 删除文章-end ===== **/
 </script>
 
 <template>
@@ -33,10 +51,23 @@ function handleEdit() {
       <div class="w-full h-auto flex text-start text-[10px] text-gray-300">
         {{ date }}
       </div>
-      <div class="w-full h-auto mt-2">
-        <el-button class="main_primary_btn w-full" @click="handleEdit">编辑</el-button>
+      <div class="w-full h-auto mt-2 grid grid-cols-3 gap-2">
+        <div class="w-full h-auto col-span-2 flex">
+          <el-button class="main_primary_btn w-full" @click="handleEdit">编辑</el-button>
+        </div>
+        <div class="w-full h-auto flex col-span-1">
+          <el-button class="main_danger_btn w-full" @click="handleDelete">删除</el-button>
+        </div>
       </div>
     </el-card>
+    <GenerateDialog
+        v-model:visible="dialogVisible"
+        :is-default="false"
+        title="提示"
+        :confirm-func="submitDelete"
+    >
+      <div class="text-xl font-bold">你确定要删除<span class="text-red-400 mx-1">{{ title }}</span> 吗？</div>
+    </GenerateDialog>
   </div>
 </template>
 

@@ -10,11 +10,25 @@
   border-radius: 4px !important;
 }
 
+@mixin main_primary_danger_color {
+  background-color: #fff !important;
+  border: 1px solid theme('colors.warning') !important;
+  border-radius: 4px !important;
+  color: theme('colors.warning') !important;
+}
+
 @mixin main_primary_btn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
   color: white !important;
+  transition: 0.4s;
+}
+
+@mixin main_btns {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
   transition: 0.4s;
 }
 
@@ -35,4 +49,9 @@
 .main_primary_date_btn {
   @include main_primary_date_btn;
   @include main_primary_date_color;
+}
+
+.main_danger_btn {
+  @include main_btns;
+  @include main_primary_danger_color;
 }
