@@ -1,6 +1,6 @@
-# templatemanage
+# 中台模板管理系统
 
-This template should help get you started developing with Vue 3 in Vite.
+该项目采用技术栈为 Vue3 + Vite4 + Element-Plus + TailwindCSS + TS。
 
 ## Recommended IDE Setup
 
