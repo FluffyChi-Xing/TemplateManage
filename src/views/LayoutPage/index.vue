@@ -181,10 +181,25 @@ function handleChange(index: string) {
 
 /** ===== 开启标签页-start ===== **/
 const showTags = ref<boolean>(true)
-function handleTags() {
-  showTags.value = !showTags.value
-  pageCommon.isShowTags = showTags.value
+function checkShow() {
+  let storage = localStorage.getItem('showTags')
+  if (storage === 'true') {
+    showTags.value = true
+  } else {
+    showTags.value = false
+  }
 }
+function handleTags(e: boolean) {
+  let storage = localStorage.getItem('showTags')
+  if (storage === 'true') {
+    localStorage.setItem('showTags', e.toString())
+  } else {
+    localStorage.setItem('showTags', 'true')
+  }
+}
+onMounted(() => {
+  checkShow()
+})
 /** ===== 开启标签页-end ===== **/
 </script>
 
@@ -271,7 +286,10 @@ function handleTags() {
           <!-- page container -->
           <div class="w-full h-full relative block">
             <!-- tags banner -->
-            <div class="w-full h-16 pb-4 flex gap-3 overflow-hidden">
+            <div
+                v-if="showTags"
+                class="w-full h-16 pb-4 flex gap-3 overflow-hidden"
+            >
               <TagsComponents
                   :tags="tagsList"
                   tags=""

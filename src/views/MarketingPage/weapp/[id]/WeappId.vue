@@ -31,7 +31,11 @@ const weappStore = $stores.weapp.weappStore()
 const context = ref<WeappTypes.weappItem>()
 const backHtml = ref<string>()
 const innerHtml = computed(() => {
-  return `<p>${ context.value?.content }</p>`
+  if (context.value?.content) {
+    return `<p>${ context.value?.content }</p>`
+  } else {
+   return `<p>请输入内容</p>`
+  }
 })
 function getContext() {
   context.value = weappStore.weappContent;

@@ -68,7 +68,7 @@ onMounted(async () => {
 
 /** =====  新增文章-start  ===== **/
 function handleAdd() {
-  router.push('/marketcenter/weapp/add')
+  router.push('/marketcenter/weapp/-1')
 }
 /** =====  新增文章-end  ===== **/
 

@@ -23,7 +23,7 @@ import CheckInPage from "@/views/MarketingPage/_components/CheckInPage.vue";
 import WeappManage from "@/views/MarketingPage/weapp/WeappManage.vue";
 import WeappHome from "@/views/MarketingPage/weapp/_components/WeappHome.vue";
 import WeappId from "@/views/MarketingPage/weapp/[id]/WeappId.vue";
-import WeappAdd from "@/views/MarketingPage/weapp/_components/WeappAdd.vue";
+// import WeappAdd from "@/views/MarketingPage/weapp/_components/WeappAdd.vue";
 
 /** ===== 页面布局切换-start ===== **/
 const layoutMode = localStorage.getItem('layoutMode')
@@ -192,14 +192,6 @@ const router = createRouter({
                   component: WeappId,
                   meta: {
                     title: '公众号编辑'
-                  }
-                },
-                {
-                  path: '/marketcenter/weapp/add',
-                  name: 'weappAdd',
-                  component: WeappAdd,
-                  meta: {
-                    title: '新增文章'
                   }
                 }
               ],
