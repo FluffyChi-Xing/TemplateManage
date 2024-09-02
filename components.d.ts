@@ -45,6 +45,7 @@ declare module 'vue' {
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     ExampelShowCase: typeof import('./src/components/ExampelShowCase.vue')['default']
     GenerateDialog: typeof import('./src/components/GenerateDialog.vue')['default']
     LayoutComponent: typeof import('./src/views/LayoutPage/_components/LayoutComponent.vue')['default']

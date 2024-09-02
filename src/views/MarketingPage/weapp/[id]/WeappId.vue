@@ -65,9 +65,9 @@ function handleSubmit() {
       </div>
       <div style="height: calc(100% - 32px)" class="w-full grid grid-cols-5 gap-2">
         <div class="col-span-1 w-full h-full flex flex-col">
-          <div class="w-full h-[250px] p-4 item-border flex flex-col">
+          <div class="w-full h-[260px] p-4 item-border flex flex-col">
             <img :src="imgUrl" alt="" class="w-full h-[200px] object-cover">
-            <div class="w-full text-start text-xl font-bold text-ellipsis whitespace-nowrap">{{ title }}</div>
+            <div class="w-full h-auto overflow-hidden text-start text-xl font-bold text-ellipsis whitespace-nowrap">{{ title }}</div>
           </div>
         </div>
         <div class="col-span-4 w-full h-full flex">
@@ -107,7 +107,12 @@ function handleSubmit() {
                   label="封面"
                   required
               >
-                <div class="w-full h-auto" />
+                <el-upload
+                    action="#"
+                    limit="1"
+                >
+                  <el-button class="main_primary_btn">上传</el-button>
+                </el-upload>
               </el-form-item>
               <el-form-item
                   label="内容"
