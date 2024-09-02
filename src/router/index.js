@@ -24,6 +24,9 @@ import WeappManage from "@/views/MarketingPage/weapp/WeappManage.vue";
 import WeappHome from "@/views/MarketingPage/weapp/_components/WeappHome.vue";
 import WeappId from "@/views/MarketingPage/weapp/[id]/WeappId.vue";
 // import WeappAdd from "@/views/MarketingPage/weapp/_components/WeappAdd.vue";
+import Maintenance from '@/views/Maintenance/index.vue'
+import DocumentPage from "@/views/Maintenance/_components/DocumentPage.vue";
+import InterfacePage from "@/views/Maintenance/_components/InterfacePage.vue";
 
 /** ===== 页面布局切换-start ===== **/
 const layoutMode = localStorage.getItem('layoutMode')
@@ -198,6 +201,32 @@ const router = createRouter({
               meta: {
                 title: '公众号管理'
               }
+            }
+          ]
+        },
+        {
+          path: '/maintenance',
+          name: 'maintenance',
+          meta: {
+            title: '维护中心'
+          },
+          component: Maintenance,
+          children: [
+            {
+              path: '',
+              name: 'document',
+              meta: {
+                title: '文件管理'
+              },
+              component: DocumentPage
+            },
+            {
+              path: '/maintenance/interface',
+              name: 'interface',
+              meta: {
+                title: '接口管理'
+              },
+              component: InterfacePage
             }
           ]
         }

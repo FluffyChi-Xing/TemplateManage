@@ -87,7 +87,6 @@ watch(() => route.fullPath, () => {
         class="el-menu-vertical-demo"
         :default-active="defaultActive"
         text-color="#A9A9A9FF"
-        background-color="#ffffff"
         style="height: 100%;border-right: 0;"
         @select="handleSelect"
     >

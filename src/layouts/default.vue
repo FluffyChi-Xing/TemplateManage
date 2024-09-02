@@ -63,12 +63,21 @@ function changeRouter(e: string, es: string[]) {
       router.push('/marketcenter')
       defaultActive.value = '7'
       break;
+    case '8':
+      router.push('/maintenance')
+      defaultActive.value = '8'
+      break;
   }
 }
 function persistenceRoute(e: string) {
   // 处理一二级菜单不协调的问题
   if (e.includes('/marketcenter')) {
     defaultActive.value = '7'
+    return
+  }
+  // 处理维护页面
+  if (e.includes('/maintenance')) {
+    defaultActive.value = '8'
     return
   }
   switch (e) {
@@ -101,6 +110,9 @@ function persistenceRoute(e: string) {
       break;
     case '/marketcenter':
       defaultActive.value = '7'
+      break;
+    case '/maintenance':
+      defaultActive.value = '8'
       break;
   }
 }
@@ -179,6 +191,12 @@ const menuList = ref<MenuList[]>([
     index: '7',
     title: '营销中心',
     icon: $enums.MenuIcons[9],
+    children: null
+  },
+  {
+    index: '8',
+    title: '维护',
+    icon: $enums.MenuIcons[10],
     children: null
   }
 ])
