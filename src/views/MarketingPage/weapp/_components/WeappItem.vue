@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import GenerateDialog from "../../../../components/GenerateDialog.vue";
-import {computed, ref} from 'vue'
+import {ref} from 'vue'
 import {ElMessage} from "element-plus";
+import {$stores} from "../../../../composabels/stores";
 
 const props = withDefaults(defineProps<{
   id?: number,
@@ -16,10 +17,22 @@ const props = withDefaults(defineProps<{
   date: '2021-09-01',
   id: -1
 })
+/** ===== 编辑文章-start ===== **/
 const emits = defineEmits(['edit:id', 'delete:id'])
+const weappContext = $stores.weapp.weappStore();
 function handleEdit() {
   emits('edit:id', props.id)
+  // 将要编辑的文章信息存入上下文
+  weappContext.weappContent = {
+    id: props.id,
+    title: props.title,
+    content: props.content,
+    imgUrl: props.imgUrl,
+    date: props.date
+  }
 }
+/** ===== 编辑文章-end ===== **/
+
 /** ===== 删除文章-start ===== **/
 const dialogVisible = ref<boolean>(false)
 function handleDelete() {

@@ -54,6 +54,7 @@ declare module 'vue' {
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
     TableTemplate: typeof import('./src/components/TableTemplate.vue')['default']
     TagsComponents: typeof import('./src/components/TagsComponents.vue')['default']
+    TemplateEditor: typeof import('./src/components/TemplateEditor.vue')['default']
     TipComponent: typeof import('./src/components/TipComponent.vue')['default']
     UserAvatar: typeof import('./src/components/UserAvatar.vue')['default']
   }

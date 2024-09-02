@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
+import {$stores} from "../../../../composabels/stores";
+import TemplateEditor from "../../../../components/TemplateEditor.vue";
+import {$message} from "../../../../composabels/element-plus";
 
 const route = useRoute()
 const router = useRouter()
@@ -14,13 +17,43 @@ onMounted(() => {
 function goBack() {
   router.back()
 }
-const imgUrl = ref<string>('https://picsum.photos/200/300?1')
+function cancelEdit() {
+  router.back()
+}
+const imgUrl = ref<string>()
 /** =====  文章编辑-start  ===== **/
 const title = ref<string>()
 const abstract = ref<string>()
 const author = ref<string>()
 const picUrl = ref<string>()
 const content = ref<string>('内容')
+const weappStore = $stores.weapp.weappStore()
+const context = ref<WeappTypes.weappItem>()
+const backHtml = ref<string>()
+const innerHtml = computed(() => {
+  return `<p>${ context.value?.content }</p>`
+})
+function getContext() {
+  context.value = weappStore.weappContent;
+  // console.log('context', context.value)
+  title.value = context.value?.title || '请输入标题'
+  abstract.value = context.value?.abstract || '请输入摘要'
+  imgUrl.value = context.value?.imgUrl || 'https://picsum.photos/200/300?1'
+  content.value = context.value?.content || ''
+}
+onMounted(() => {
+  getContext()
+})
+function handleUpdate(key: string) {
+  backHtml.value = key
+}
+function handleSubmit() {
+  $message({
+    type: "success",
+    message: '提交成功'
+  })
+  router.back()
+}
 /** =====  文章编辑-end  ===== **/
 </script>
 
@@ -34,7 +67,7 @@ const content = ref<string>('内容')
         <div class="col-span-1 w-full h-full flex flex-col">
           <div class="w-full h-[250px] p-4 item-border flex flex-col">
             <img :src="imgUrl" alt="" class="w-full h-[200px] object-cover">
-            <div class="w-full text-start text-xl font-bold">标题</div>
+            <div class="w-full text-start text-xl font-bold text-ellipsis whitespace-nowrap">{{ title }}</div>
           </div>
         </div>
         <div class="col-span-4 w-full h-full flex">
@@ -80,12 +113,17 @@ const content = ref<string>('内容')
                   label="内容"
                   required
               >
-                <div class="w-full h-auto" />
+                <div class="w-full h-auto flex flex-col">
+                  <TemplateEditor
+                      :inner-html="innerHtml"
+                      @update:inner-html="handleUpdate"
+                  />
+                </div>
               </el-form-item>
               <el-form-item>
                 <div class="w-full h-auto flex justify-between">
-                  <el-button class="main_primary_btn">添加</el-button>
-                  <el-button class="main_danger_btn">取消</el-button>
+                  <el-button class="main_primary_btn" @click="handleSubmit">提交</el-button>
+                  <el-button class="main_danger_btn" @click="cancelEdit">取消</el-button>
                 </div>
               </el-form-item>
             </el-form>
