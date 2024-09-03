@@ -27,6 +27,8 @@ import WeappId from "@/views/MarketingPage/weapp/[id]/WeappId.vue";
 import Maintenance from '@/views/Maintenance/index.vue'
 import DocumentPage from "@/views/Maintenance/_components/DocumentPage.vue";
 import InterfacePage from "@/views/Maintenance/_components/InterfacePage.vue";
+import DocumentLogin from "@/views/Maintenance/_components/DocumentLogin.vue";
+import DocumentHome from "@/views/Maintenance/_components/DocumentHome.vue";
 
 /** ===== 页面布局切换-start ===== **/
 const layoutMode = localStorage.getItem('layoutMode')
@@ -213,12 +215,29 @@ const router = createRouter({
           component: Maintenance,
           children: [
             {
-              path: '',
+              path: '/maintenance/document',
               name: 'document',
               meta: {
                 title: '文件管理'
               },
-              component: DocumentPage
+              component: DocumentPage,
+              children: [
+                {
+                  path: '/maintenance/document',
+                  name: 'document',
+                  meta: {
+                    title: '文件管理'
+                  },
+                  component: DocumentHome,
+                  children: [
+                    {
+                      path: '/maintenance/document/check',
+                      name: 'check',
+                      component: DocumentLogin
+                    }
+                  ]
+                }
+              ]
             },
             {
               path: '/maintenance/interface',
@@ -271,9 +290,13 @@ const router = createRouter({
 //router before guards
 router.beforeEach(async(to) => {
   NProgress.start()
-  //set page title
+  // set page title
   if (to.meta.title) {
     document.title = to.meta.title
+  }
+  // 处理文件管理页面的问题
+  if (to.path === '/maintenance') {
+    return '/maintenance/document'
   }
 })
 
