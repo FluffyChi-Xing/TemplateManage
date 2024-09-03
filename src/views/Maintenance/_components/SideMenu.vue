@@ -14,6 +14,10 @@ const pageSetting = ref<DisplayTypes.pageSetting>(defaultSetting)
 const defaultActive = ref<string>('1')
 /** =====  菜单高亮-start  ===== **/
 function highLight() {
+  // 处理接口详情页的高亮失效问题
+  if (route.fullPath.includes('/maintenance/interface')) {
+    defaultActive.value = '2'
+  }
   switch (route.fullPath) {
     case '/maintenance':
       defaultActive.value = '1'

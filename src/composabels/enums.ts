@@ -4,11 +4,13 @@ import * as componentEnums from './enums/componentEnums'
 import * as DataCardEnums from '../composabels/enums/datacardEnums'
 import * as InforEnums from './enums/inforEnums'
 import * as CouponEnums from './enums/couponEnums'
+import * as SelectTreeEnums from "./enums/selectTreeEnums";
 export const $enums = {
     ...iconEnums,
     ...TableEnums,
     ...componentEnums,
     ...DataCardEnums,
     ...InforEnums,
-    ...CouponEnums
+    ...CouponEnums,
+    ...SelectTreeEnums
 }

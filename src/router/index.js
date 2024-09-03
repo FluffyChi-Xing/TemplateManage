@@ -29,6 +29,8 @@ import DocumentPage from "@/views/Maintenance/_components/DocumentPage.vue";
 import InterfacePage from "@/views/Maintenance/_components/InterfacePage.vue";
 import DocumentLogin from "@/views/Maintenance/_components/DocumentLogin.vue";
 import DocumentHome from "@/views/Maintenance/_components/DocumentHome.vue";
+import InterfaceHome from "@/views/Maintenance/_components/InterfaceHome.vue";
+import InterfaceInfo from "@/views/Maintenance/_components/InterfaceInfo.vue";
 
 /** ===== 页面布局切换-start ===== **/
 const layoutMode = localStorage.getItem('layoutMode')
@@ -245,7 +247,22 @@ const router = createRouter({
               meta: {
                 title: '接口管理'
               },
-              component: InterfacePage
+              component: InterfacePage,
+              children: [
+                {
+                  path: '',
+                  name: 'interfaceHome',
+                  component: InterfaceHome,
+                },
+                {
+                  path: '/maintenance/interface/:id',
+                  name: 'interfaceItem',
+                  component: InterfaceInfo,
+                  meta: {
+                    title: '接口详情'
+                  }
+                }
+              ]
             }
           ]
         }

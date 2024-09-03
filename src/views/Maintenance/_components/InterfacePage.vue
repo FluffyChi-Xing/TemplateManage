@@ -1,29 +1,63 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SelectTree from "./SelectTree.vue";
-import NoData from "../../../components/NoData.vue";
+// import NoData from "../../../components/NoData.vue";
 import GenerateDialog from "../../../components/GenerateDialog.vue";
+import { useRouter } from "vue-router";
 
 
 interface TreeData {
   label: string,
+  node?: boolean,
+  method?: number,
   children?: TreeData[]
 }
+const router = useRouter()
 /** ===== 后台接口树形菜单初始化-start ===== **/
 const defaultBack = [
   {
     label: '展示中心',
+    node: true,
     children: [
       {
-        label: '表格模块'
+        label: '表格模块',
+        node: true,
+        children: [
+          {
+            label: '获取列表数据',
+            node: false,
+            method: 0,
+          },
+          {
+            label: '新增数据',
+            node: false,
+            method: 1
+          }
+        ]
       },
       {
-        label: '库存管理模块'
+        label: '库存管理模块',
+        node: true,
+        children: [
+          {
+            label: '获取库存列表',
+            node: false,
+            method: 0
+          }
+        ]
       }
     ]
   },
   {
     label: '用户中心模块',
+    node: true,
+    children: [
+      {
+        label: '获取用户数据',
+        node: false,
+        method: 0
+      }
+    ]
   }
 ]
 const backendTreeData = ref<TreeData[]>(defaultBack)
@@ -38,6 +72,15 @@ function synchronous() {
   dialogVisible.value = true
 }
 /** ===== 同步数据-end ===== **/
+
+/** ===== 跳转接口详情页-start ===== **/
+function handleClick(node: TreeData) {
+  if (!node?.node) {
+    // console.log(node?.$treeNodeId)
+    router.push(`/maintenance/interface/${node?.$treeNodeId}`)
+  }
+}
+/** ===== 跳转接口详情页-end ===== **/
 </script>
 
 <template>
@@ -64,14 +107,13 @@ function synchronous() {
                   </div>
                   <div class="w-full h-[500px] flex flex-col">
                     <SelectTree
+                        @node-click:node-data="handleClick"
                         :tree-data="backendTreeData"
                     />
                   </div>
                 </div>
                 <div class="col-span-4 w-full h-full flex flex-col">
-                  <NoData
-                      description="暂无数据"
-                  />
+                  <RouterView />
                 </div>
               </div>
             </el-tab-pane>
