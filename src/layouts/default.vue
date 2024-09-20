@@ -67,6 +67,10 @@ function changeRouter(e: string, es: string[]) {
       router.push('/maintenance')
       defaultActive.value = '8'
       break;
+    case '9':
+      router.push('/resources')
+      defaultActive.value = '9'
+      break;
   }
 }
 function persistenceRoute(e: string) {
@@ -113,6 +117,9 @@ function persistenceRoute(e: string) {
       break;
     case '/maintenance':
       defaultActive.value = '8'
+      break;
+    case '/resources':
+      defaultActive.value = '9'
       break;
   }
 }
@@ -197,6 +204,12 @@ const menuList = ref<MenuList[]>([
     index: '8',
     title: '维护',
     icon: $enums.MenuIcons[10],
+    children: null
+  },
+  {
+    index: '9',
+    title: '素材管理',
+    icon: $enums.MenuIcons[11],
     children: null
   }
 ])

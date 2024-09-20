@@ -265,6 +265,14 @@ const router = createRouter({
               ]
             }
           ]
+        },
+        {
+          path: '/resources',
+          name: 'resources',
+          meta: {
+            title: '资源管理'
+          },
+          component: () => import('@/views/ResourceManage/index.vue')
         }
       ],
     },

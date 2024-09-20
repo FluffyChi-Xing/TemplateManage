@@ -298,8 +298,7 @@ onMounted(() => {
               />
             </div>
             <div
-                style="height: calc(100% - 64px)"
-                class="bg-[#F8F9FB] overflow-y-auto w-full"
+                class="bg-[#F8F9FB] h-full overflow-y-auto w-full"
             >
               <router-view />
             </div>
